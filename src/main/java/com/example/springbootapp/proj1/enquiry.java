@@ -21,8 +21,7 @@ public class enquiry {
     userRepo userrepo;
 
     @RequestMapping("/place")
-    public String index(Model model, Model model2 ) {
-        model.addAttribute("greeting", itemrepo.itemNames());
+    public String index(Model model2 ) {
         model2.addAttribute("message", userrepo.client_name());
         return "enquiryView";
     }
