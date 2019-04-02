@@ -7,25 +7,26 @@
 </head>
 <body>
   <jsp:include page="navbar.jsp"/>
-  <p>Finished goods</p>
   <br><form action="login" method="Post">
-<input name="userName" type="text"/><br/> 
-<input name="password" type="password"/><br/>
-
-
-  <select name="productId" form = "oa">
- <c:forEach items="${greeting}" var="lists">
-      <option> ${lists} </option>
-</c:forEach>
-</select>
-<br>
-<p>Select Customer</P>
- <select name="name" form = "aa">
+  <p>Select Customer</P>
+ <select name="name" form = "login">
  <c:forEach items="${message}" var="item">
       <option> ${item} </option>
 </c:forEach>
-<input type="submit"/>
-</form>
+<br>
 </select>
+  <p>Finished goods</p>
+  
+  <p> Product name </p>
+<input name="product" type="text"/><br/> 
+
+<br>
+<p> Quantity </p>
+<input name="quantity" type="number"/><br/>
+
+<input type="submit"/>
+
+</form>
+
 </body>
 </html>
