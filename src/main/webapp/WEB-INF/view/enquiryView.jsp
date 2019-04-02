@@ -9,7 +9,7 @@
   <jsp:include page="navbar.jsp"/>
   <br><form action="login" method="Post">
   <p>Select Customer</P>
- <select>
+ <select name = "selection" form = "aa">
  <c:forEach items="${message}" var="item">
       <option> ${item} </option>
 </c:forEach>
