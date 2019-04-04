@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class enquiryController {
@@ -25,10 +26,9 @@ public class enquiryController {
     @Autowired
     userRepo userrepo;
 
-    @RequestMapping("/place")
-    public String index(Model model2 ) {
-        model2.addAttribute("message", userrepo.client_name());
-        return "enquiryView";
+    @RequestMapping(value = "/enquiry", method = RequestMethod.GET)
+    public ModelAndView showForm() {
+        return new ModelAndView("employeeView", "enquiryplace", new enquiryPlace());
     }
     
     @RequestMapping(value = "/addEnquiry", method = RequestMethod.POST)
