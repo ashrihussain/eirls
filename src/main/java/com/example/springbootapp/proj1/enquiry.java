@@ -22,16 +22,18 @@ private int order_id;
 	}
 
 
-@Column(name = "user_name")
-private String user_name;
+@Column(name = "client_id")
+private String client_id;
 
-	public String getUser_name() {
-		return this.user_name;
+	public String getClient_id() {
+		return this.client_id;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setClient_id(String client_id) {
+		this.client_id = client_id;
 	}
+
+
 
 
 @Column(name = "client_order_id")

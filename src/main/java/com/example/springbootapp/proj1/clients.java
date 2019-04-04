@@ -10,16 +10,19 @@ import javax.persistence.Table;
 public class clients{
 
     @Id
-    @Column(name = "client_username")
-    private String client_username;
+    @Column(name = "client_id")
+    private String client_id;
 
-	public String getClient_username() {
-		return this.client_username;
+	public String getClient_id() {
+		return this.client_id;
 	}
 
-	public void setClient_username(String client_username) {
-		this.client_username = client_username;
+	public void setClient_id(String client_id) {
+		this.client_id = client_id;
 	}
+
+
+	
 
 
     @Column(name = "client_name")
@@ -85,9 +88,9 @@ public class clients{
     public clients() {
     }
 
-    public clients (String client_username, String client_name, String client_trade, String client_address, String client_contact, String client_status) {
+    public clients (String client_id, String client_name, String client_trade, String client_address, String client_contact, String client_status) {
         super();
-        this.client_username = client_username;
+        this.client_id = client_id;
         this.client_name = client_name;
         this.client_trade = client_trade;
         this.client_address = client_address;
