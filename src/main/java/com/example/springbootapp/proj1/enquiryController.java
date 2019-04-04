@@ -28,7 +28,7 @@ public class enquiryController {
 
     @RequestMapping(value = "/enquiry", method = RequestMethod.GET)
     public ModelAndView showForm() {
-        return new ModelAndView("employeeView", "enquiryplace", new enquiryPlace());
+        return new ModelAndView("enquiryView", "enquiryplace", new enquiryPlace());
     }
     
     @RequestMapping(value = "/addEnquiry", method = RequestMethod.POST)
@@ -41,7 +41,7 @@ public class enquiryController {
         model.addAttribute("product", enquiryplace.getProduct());
         model.addAttribute("quantity", enquiryplace.getQuantity());
         model.addAttribute("date", enquiryplace.getDate());
-        return "enquiryView";
+        return "enquiryhome";
     }
 
 
