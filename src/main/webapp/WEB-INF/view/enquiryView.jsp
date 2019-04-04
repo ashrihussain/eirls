@@ -12,7 +12,7 @@
 <form:form method="POST"
           action="/addEnquiry" modelAttribute="enquiryplace">
 
-
+          
       <table>
                 <tr>
                     <td><form:label path="name">Client Name</form:label></td>

@@ -38,8 +38,9 @@ public class enquiryController {
             return "error";
         }
         model.addAttribute("name", enquiryplace.getName());
-        model.addAttribute("contactNumber", enquiryplace.getProduct());
-        model.addAttribute("id", enquiryplace.getQuantity());
+        model.addAttribute("product", enquiryplace.getProduct());
+        model.addAttribute("quantity", enquiryplace.getQuantity());
+        model.addAttribute("date", enquiryplace.getDate());
         return "enquiryView";
     }
 
