@@ -13,7 +13,6 @@
  <c:forEach items="${message}" var="item">
       <option> ${item} </option>
 </c:forEach>
-<input type="submit"/>
 </select>
 <br>
   <p>Finished goods</p>
@@ -23,7 +22,7 @@
 <p> quantity </p>
 <input name="quantity" type="password"/><br/>
 <br>
-
+<input type="submit"/>
 </form>
 
 </body>
