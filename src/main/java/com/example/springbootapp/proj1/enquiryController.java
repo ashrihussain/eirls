@@ -26,6 +26,9 @@ public class enquiryController {
     @Autowired
     userRepo userrepo;
 
+    @Autowired
+    enquiryRepo enqrepo;
+
     @RequestMapping(value = "/enquiry", method = RequestMethod.GET)
     public ModelAndView showForm() {
         return new ModelAndView("enquiryView", "enquiryplace", new enquiryPlace());
@@ -37,9 +40,14 @@ public class enquiryController {
         if (result.hasErrors()) {
             return "error";
         }
-        
-      //  enquiry enq = new enquiry(enquiryplace.getName(), )
-        return "enquiryhome";
+        String s = "pending";
+        enquiry enq = new enquiry();
+        enq.setClient_name(enquiryplace.getName());
+        enq.setDue_date(enquiryplace.getDate());
+        enq.setOrder_status(s);
+        enqrepo.save(enq);
+
+        return "index";
     }
 
 
