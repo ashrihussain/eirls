@@ -1,7 +1,10 @@
 package com.example.springbootapp.proj1;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +13,7 @@ import javax.persistence.Table;
 public class enquiry{
 
 @Id
+@GeneratedValue(strategy=GenerationType.AUTO)
 @Column(name = "order_id")  
 private int order_id;
 
@@ -22,15 +26,15 @@ private int order_id;
 	}
 
 
-@Column(name = "client_id")
-private String client_id;
+	@Column(name="client_name")
+	private String client_name;
 
-	public String getClient_id() {
-		return this.client_id;
+	public String getClient_name() {
+		return this.client_name;
 	}
 
-	public void setClient_id(String client_id) {
-		this.client_id = client_id;
+	public void setClient_name(String client_name) {
+		this.client_name = client_name;
 	}
 
 

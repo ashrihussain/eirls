@@ -2,6 +2,8 @@ package com.example.springbootapp.proj1;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,7 +11,8 @@ import javax.persistence.Table;
 @Table(name = "clients", schema = "nCxJspI8Zf")
 public class clients{
 
-    @Id
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "client_id")
     private String client_id;
 

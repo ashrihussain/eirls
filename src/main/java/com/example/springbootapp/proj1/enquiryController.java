@@ -37,10 +37,8 @@ public class enquiryController {
         if (result.hasErrors()) {
             return "error";
         }
-        model.addAttribute("name", enquiryplace.getName());
-        model.addAttribute("product", enquiryplace.getProduct());
-        model.addAttribute("quantity", enquiryplace.getQuantity());
-        model.addAttribute("date", enquiryplace.getDate());
+        
+      //  enquiry enq = new enquiry(enquiryplace.getName(), )
         return "enquiryhome";
     }
 

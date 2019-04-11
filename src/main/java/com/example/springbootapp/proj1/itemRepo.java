@@ -19,6 +19,8 @@ public interface itemRepo extends CrudRepository<items, String> {
     @Query("Select i.itemname from items i")
     List<items> itemNames();
 
+    
+
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query("Update items i set i.itemprice=:#{#newVal} where i.itemname=:#{#itemName}")

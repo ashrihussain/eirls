@@ -16,8 +16,8 @@ public interface userRepo extends CrudRepository<clients, String> {
    // List<clients> findDistinctItempriceByItemname(String Itemname);
     
 
-    @Query("Select i.client_name from clients i")
-    List<clients> client_name();
+    @Query("Select i.client_id from clients i")
+    List<clients> client_id();
 
 
 
