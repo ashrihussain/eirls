@@ -29,6 +29,9 @@ public class enquiryController {
     @Autowired
     enquiryRepo enqrepo;
 
+    @Autowired
+    orderitemsRepo orderrepo;
+
     @RequestMapping(value = "/enquiry", method = RequestMethod.GET)
     public ModelAndView showForm() {
         return new ModelAndView("enquiryView", "enquiryplace", new enquiryPlace());
@@ -46,6 +49,11 @@ public class enquiryController {
         enq.setDue_date(enquiryplace.getDate());
         enq.setOrder_status(s);
         enqrepo.save(enq);
+
+        orderitems ord = new orderitems();
+        ord.setProduct_name(enquiryplace.getProduct());
+        ord.setProduct_quantity(enquiryplace.getQuantity());
+        orderrepo.save(ord);
 
         return "index";
     }
