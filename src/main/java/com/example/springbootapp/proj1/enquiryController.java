@@ -1,5 +1,6 @@
 package com.example.springbootapp.proj1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class enquiryController {
+
+    List<Integer> quantityArray = new ArrayList<>();
+    List<String> itemArrray = new ArrayList<>();
+
+    int i = itemArrray.size();
+    
+    
 
     @Autowired
     itemRepo itemrepo;
@@ -44,18 +52,42 @@ public class enquiryController {
             return "error";
         }
         String s = "pending";
+        int index =0;
         enquiry enq = new enquiry();
         enq.setClient_name(enquiryplace.getName());
         enq.setDue_date(enquiryplace.getDate());
         enq.setOrder_status(s);
-        enqrepo.save(enq);
+        enquiry e =  enqrepo.save(enq);
 
-        orderitems ord = new orderitems();
-        ord.setProduct_name(enquiryplace.getProduct());
-        ord.setProduct_quantity(enquiryplace.getQuantity());
-        orderrepo.save(ord);
+        for (String productname : itemArrray) {
+                orderrepo.updateItem(e.getOrder_id(), productname);
+                }   
+        
+        itemArrray.clear();
 
         return "index";
+    }
+
+    @RequestMapping(value = "/addItem", method = RequestMethod.POST)
+    public String submit(@Valid @ModelAttribute("enquiryitemplace")enquiryItemPlace enquiryitemplace, 
+      BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "error";
+        }   
+   
+       
+        itemArrray.add(enquiryitemplace.getProductname()); 
+
+        orderitems ord = new orderitems();
+        
+        ord.setProduct_name(enquiryitemplace.getProductname());
+        ord.setProduct_quantity(enquiryitemplace.getQuantity());
+        orderrepo.save(ord);
+       
+        
+        
+
+        return "enquiryView";
     }
 
 

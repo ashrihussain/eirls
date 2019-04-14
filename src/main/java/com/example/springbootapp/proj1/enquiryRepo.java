@@ -24,7 +24,7 @@ public interface enquiryRepo extends CrudRepository<enquiry, String> {
     // @Query("create items i set i.itemprice=:#{#newVal} where i.itemname=:#{#itemName}")
     // void updateItem(@Param("newVal") int newVal, @Param("itemName") String itemname);
 
-
+  
 
 
 
