@@ -83,35 +83,35 @@ public class enquiryController {
         return "index";
     }
 
-    // @RequestMapping(value = "/enquiryAdd", method = RequestMethod.GET)
-    // public ModelAndView showForm2() {
-    //     return new ModelAndView("enquiryAddProduct", "enquiryitemplace", new enquiryItemPlace());
-    // }
+    @RequestMapping(value = "/enquiryAdd", method = RequestMethod.GET)
+    public ModelAndView showForm2() {
+        return new ModelAndView("enquiryAdd", "enquiryplace", new enquiryPlace());
+    }
     
 
 
-    // @RequestMapping(value = "/addItem", method = RequestMethod.POST)
-    // public String submit(@Valid @ModelAttribute("enquiryitemplace")enquiryItemPlace enquiryitemplace, 
-    //   BindingResult result, ModelMap model) {
-    //     if (result.hasErrors()) {
-    //     //  System.out.println(result.getAllErrors().toString());
-    //         return "error";
-    //     }   
+    @RequestMapping(value = "/addItem", method = RequestMethod.POST)
+    public String submit2(@Valid @ModelAttribute("enquiryplace")enquiryPlace enquiryplace, 
+      BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+        //  System.out.println(result.getAllErrors().toString());
+            return "error";
+        }   
    
        
-    //     itemArrray.add(enquiryitemplace.getProductname()); 
-    //     orderitems ord = new orderitems();
+        itemArrray.add(enquiryplace.getProduct()); 
+        orderitems ord = new orderitems();
         
-    //     ord.setProduct_name(enquiryitemplace.getProductname());
-    //     ord.setProduct_quantity(enquiryitemplace.getQuantity());
-    //     orderrepo.save(ord);
+        ord.setProduct_name(enquiryplace.getProduct());
+        ord.setProduct_quantity(enquiryplace.getQuantity());
+        orderrepo.save(ord);
        
        
         
         
 
-    //     return "index";
-    // }
+        return "index";
+    }
 
 
     
