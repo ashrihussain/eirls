@@ -9,13 +9,15 @@
 </head>
 <body>
   <jsp:include page="navbar.jsp"/>
+
+
 <p>Add Products </p>
 <form:form method="POST"
           action="/addItem" modelAttribute="enquiryitemplace">
 <table>
   <tr>
-                    <td><form:label path="product">Product</form:label></td>
-                    <td><form:input path="product"/></td>
+                    <td><form:label path="productname">Product</form:label></td>
+                    <td><form:input path="productname"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="quantity">
@@ -29,7 +31,7 @@
                 
   </form:form>
   <br>
-   <a href="/enquiry"> <button>Proceed</button> </a> 
+   <a href="/enquiry">    <button class="dropbtn">Home </button></a> 
   <br>
 
 </body>
