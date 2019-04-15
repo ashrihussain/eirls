@@ -29,7 +29,7 @@ public class productAddController {
     
 
 
-    @RequestMapping(value = "/addOrders", method = RequestMethod.POST)
+    @RequestMapping(value = "/placeEnquiries", method = RequestMethod.POST)
     public String submitdetails(@Valid @ModelAttribute("enquiryplace")enquiryPlace enquiryplace, 
       BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
@@ -38,12 +38,12 @@ public class productAddController {
         }   
    
        
-        itemArrray.add(enquiryplace.getProduct()); 
-        orderitems ord = new orderitems();
+        // itemArrray.add(enquiryplace.getProduct()); 
+        // orderitems ord = new orderitems();
         
-        ord.setProduct_name(enquiryplace.getProduct());
-        ord.setProduct_quantity(enquiryplace.getQuantity());
-        orderrepo.save(ord);
+        // ord.setProduct_name(enquiryplace.getProduct());
+        // ord.setProduct_quantity(enquiryplace.getQuantity());
+        // orderrepo.save(ord);
        
        
         
