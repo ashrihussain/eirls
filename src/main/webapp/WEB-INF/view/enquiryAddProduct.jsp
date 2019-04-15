@@ -26,7 +26,9 @@
                     <td><input type="submit" value="Submit"/></td>
                 </tr>
                 </table>
+                
   </form:form>
+  <br>
    <a href="/enquiry"> <button>Proceed</button> </a> 
   <br>
 

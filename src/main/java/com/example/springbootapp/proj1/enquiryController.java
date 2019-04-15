@@ -69,6 +69,13 @@ public class enquiryController {
         return "index";
     }
 
+    @RequestMapping(value = "/enquiryAdd", method = RequestMethod.GET)
+    public ModelAndView showForm2() {
+        return new ModelAndView("enquiryAddProduct", "enquiryitemplace", new enquiryItemPlace());
+    }
+    
+
+
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
     public String submit(@Valid @ModelAttribute("enquiryitemplace")enquiryItemPlace enquiryitemplace, 
       BindingResult result, ModelMap model) {
@@ -88,7 +95,7 @@ public class enquiryController {
         
         
 
-        return "enquiryView";
+        return "enquiryAddProduct";
     }
 
 
