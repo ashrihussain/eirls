@@ -11,6 +11,11 @@ import javax.persistence.Table;
 @Table (name = "order_items", schema = "nCxJspI8Zf")
 public class orderitems{
 
+	public orderitems(){
+		
+	}
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "orderitems_id")
@@ -37,8 +42,6 @@ public class orderitems{
     @Column(name = "product_price")
     private double product_price;
 
-
-    public orderitems(){}
 
 
 	public int getOrder_id() {
