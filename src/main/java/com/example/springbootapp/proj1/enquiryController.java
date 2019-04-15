@@ -90,11 +90,11 @@ public class enquiryController {
     
 
 
-    @RequestMapping(value = "/addItem", method = RequestMethod.POST)
-    public String submit2(@Valid @ModelAttribute("enquiryplace")enquiryPlace enquiryplace, 
-      BindingResult result, ModelMap model) {
+    @RequestMapping(value = "/addOrders", method = RequestMethod.POST)
+    public String submitdetails(@Valid @ModelAttribute("enquiryplace")enquiryPlace enquiryplace, 
+      BindingResult result, ModelMap model2) {
         if (result.hasErrors()) {
-        //  System.out.println(result.getAllErrors().toString());
+       
             return "error";
         }   
    

@@ -15,7 +15,7 @@
 
 <p> Enter details to place enquiry</p>
 <form:form method="POST"
-          action="/addItem" modelAttribute="enquiryplace">
+          action="/addOrders" modelAttribute="enquiryplace">
 <table>
   
                  <tr>
@@ -28,7 +28,7 @@
                     <td><form:input path="quantity"/></td>
                 </tr>
             
-                </tr>
+                
                 <tr>
                     <td><input type="submit" value="Submit"/></td>
                 </tr>
