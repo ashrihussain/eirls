@@ -78,7 +78,7 @@ public class enquiryController {
 
 
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
-    public String submit(@Valid @ModelAttribute("enquiryitemplace")enquiryItemPlace enquiryitemplace, 
+    public String submititem(@Valid @ModelAttribute("enquiryitemplace")enquiryItemPlace enquiryitemplace, 
       BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             return "error";
@@ -93,10 +93,10 @@ public class enquiryController {
         orderrepo.save(ord);
        
        
-        RedirectView view;
+        
         
 
-        return "redirect:/enquiryAdd";
+        return "index";
     }
 
 

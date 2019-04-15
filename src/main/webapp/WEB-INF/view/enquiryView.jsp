@@ -16,7 +16,7 @@
 <p> Enter details to place enquiry</p>
 <form:form method="POST"
           action="/addEnquiry" modelAttribute="enquiryplace">
-
+<table>
                 <tr>
                     <td><form:label path="name">Client Name</form:label></td>
                     <td><form:input path="name"/></td>
