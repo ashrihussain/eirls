@@ -41,7 +41,7 @@ public class enquiryController {
     enquiryRepo enqrepo;
 
     @Autowired
-    orderitemsRepo orderrepo;
+    orderitemsRepo ordrepo;
 
     @RequestMapping(value = "/enquiry", method = RequestMethod.GET)
     public ModelAndView showForm() {
@@ -102,11 +102,13 @@ public class enquiryController {
    
        
          itemArrray.add(enquiryplace.getProduct()); 
-        //  orderitems ord = new orderitems();
+         orderitems ord = new orderitems();
         
-        // ord.setProduct_name(enquiryplace.getProduct());
-        // ord.setProduct_quantity(enquiryplace.getQuantity());
-        // orderrepo.save(ord);
+         //ord.setProduct_name(enquiryplace.getProduct());
+         ord.setProduct_quantity(enquiryplace.getQuantity());
+
+         ordrepo.save(ord);
+         
        
        
         
