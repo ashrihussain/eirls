@@ -114,7 +114,7 @@ public class enquiryController {
         
         
 
-        return "index";
+        return "/enquiryPlace";
     }
     
 
