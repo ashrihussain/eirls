@@ -86,6 +86,43 @@ private String cancellation_penalty;
 		this.cancellation_penalty = cancellation_penalty;
 	}
 
+	@Column(name = "product_name")
+	private String product_name;
+
+	public String getProduct_name() {
+		return this.product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	@Column(name = "quantity")
+	private int quantity;
+
+	public int getQuantity() {
+		return this.quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	@Column(name = "date_placed")
+	private String date_placed;
+
+	public String getDate_placed() {
+		return this.date_placed;
+	}
+
+	public void setDate_placed(String date_placed) {
+		this.date_placed = date_placed;
+	}
+
+
+
+
+
 
     public enquiry(){
 
