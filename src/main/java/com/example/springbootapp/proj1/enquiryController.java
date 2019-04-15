@@ -95,7 +95,7 @@ public class enquiryController {
         
         
 
-        return "enquiryAddProduct";
+        return "/enquiryAdd";
     }
 
 
