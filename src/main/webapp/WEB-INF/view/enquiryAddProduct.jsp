@@ -16,7 +16,7 @@
           action="/addItem" modelAttribute="enquiryitemplace">
 <table>
                 <tr>
-                    <td><form:label path="productname">Product</form:label></td>
+                    <td><form:label path="productname">Product name</form:label></td>
                     <td><form:input path="productname"/></td>
                 </tr>
                 <tr>
