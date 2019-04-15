@@ -101,7 +101,7 @@ public class enquiryController {
         }   
    
        
-        // itemArrray.add(enquiryplace.getProduct()); 
+         itemArrray.add(enquiryplace.getProduct()); 
         //  orderitems ord = new orderitems();
         
         // ord.setProduct_name(enquiryplace.getProduct());
