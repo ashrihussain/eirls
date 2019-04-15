@@ -104,8 +104,8 @@ public class enquiryController {
          itemArrray.add(enquiryplace.getProduct()); 
          orderitems ord = new orderitems();
         
-         //ord.setProduct_name(enquiryplace.getProduct());
-         ord.setProduct_quantity(enquiryplace.getQuantity());
+         ord.setProduct_name(enquiryplace.getProduct());
+        // ord.setProduct_quantity(enquiryplace.getQuantity());
 
          ordrepo.save(ord);
          
