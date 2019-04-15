@@ -83,36 +83,7 @@ public class enquiryController {
         return "index";
     }
 
-    @RequestMapping(value = "/enquiryAdd", method = RequestMethod.GET)
-    public ModelAndView showForm2() {
-        return new ModelAndView("enquiryAdd", "enquiryplace", new enquiryPlace());
-    }
-    
-
-
-    @RequestMapping(value = "/addOrders", method = RequestMethod.POST)
-    public String submitdetails(@Valid @ModelAttribute("enquiryplace")enquiryPlace enquiryplace, 
-      BindingResult result, ModelMap model2) {
-        if (result.hasErrors()) {
-       
-            return "error";
-        }   
-   
-       
-        itemArrray.add(enquiryplace.getProduct()); 
-        orderitems ord = new orderitems();
-        
-        ord.setProduct_name(enquiryplace.getProduct());
-        ord.setProduct_quantity(enquiryplace.getQuantity());
-        orderrepo.save(ord);
-       
-       
-        
-        
-
-        return "index";
-    }
-
+  
 
     
 
