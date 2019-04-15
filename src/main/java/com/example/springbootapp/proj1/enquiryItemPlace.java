@@ -6,7 +6,6 @@ public class enquiryItemPlace{
 
     private int quantity;
 
-    public enquiryItemPlace(){}
 
 	public String getProductname() {
 		return this.productname;

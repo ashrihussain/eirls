@@ -17,14 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class enquiryController {
 
-    List<Integer> quantityArray = new ArrayList<>();
+   // List<Integer> quantityArray = new ArrayList<>();
     List<String> itemArrray = new ArrayList<>();
 
-    int i = itemArrray.size();
+  //  int i = itemArrray.size();
     
     
 
@@ -92,10 +93,10 @@ public class enquiryController {
         orderrepo.save(ord);
        
        
-        
+        RedirectView view;
         
 
-        return "/enquiryAdd";
+        return "redirect:/enquiryAdd";
     }
 
 
