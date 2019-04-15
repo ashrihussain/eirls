@@ -60,6 +60,7 @@ public class enquiryController {
         enquiry e =  enqrepo.save(enq);
 
         for (String productname : itemArrray) {
+            
                 orderrepo.updateItem(e.getOrder_id(), productname);
                 }   
         
@@ -77,12 +78,12 @@ public class enquiryController {
    
        
         itemArrray.add(enquiryitemplace.getProductname()); 
-
         orderitems ord = new orderitems();
         
         ord.setProduct_name(enquiryitemplace.getProductname());
         ord.setProduct_quantity(enquiryitemplace.getQuantity());
         orderrepo.save(ord);
+       
        
         
         

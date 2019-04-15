@@ -9,29 +9,26 @@
 </head>
 <body>
   <jsp:include page="navbar.jsp"/>
-
-
-
-
-<p> Enter details to place enquiry</p>
+<p>Add Products </p>
 <form:form method="POST"
-          action="/addEnquiry" modelAttribute="enquiryplace">
-
-                <tr>
-                    <td><form:label path="name">Client Name</form:label></td>
-                    <td><form:input path="name"/></td>
+          action="/addItem" modelAttribute="enquiryitemplace">
+<table>
+  <tr>
+                    <td><form:label path="product">Product</form:label></td>
+                    <td><form:input path="product"/></td>
                 </tr>
-              
-                   <tr>
-                    <td><form:label path="date">
-                      Due Date</form:label></td>
-                    <td><form:input path="date"/></td>
+                <tr>
+                    <td><form:label path="quantity">
+                     quantity</form:label></td>
+                    <td><form:input path="quantity"/></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Submit"/></td>
                 </tr>
-            </table>
-        </form:form>
+                </table>
+  </form:form>
+   <a href="/enquiry"> <button>Proceed</button> </a> 
+  <br>
 
 </body>
 </html>
