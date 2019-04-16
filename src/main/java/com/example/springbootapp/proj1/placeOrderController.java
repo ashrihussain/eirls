@@ -65,8 +65,9 @@ public ModelAndView showForm(ModelAndView model) {
     
        model.addObject("list", list);
        model.setViewName("placeOrder");
-
-       return new ModelAndView("placeOrder", "enquiryplace", new enquiryPlace());
+       
+return model;
+    //   return new ModelAndView("placeOrder", "enquiryplace", new enquiryPlace());
 }
 
 

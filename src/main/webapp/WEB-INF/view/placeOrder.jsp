@@ -11,7 +11,7 @@
   <jsp:include page="navbar.jsp"/>
 
 <form:form method="POST"
-          action="/confirmOrder" modelAttribute="enquiryplace">
+          action="/confirmOrder" modelAttribute= "model">
 <table border="2">
 
 		<th>Order Number</th>
