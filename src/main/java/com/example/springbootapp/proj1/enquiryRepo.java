@@ -19,10 +19,10 @@ public interface enquiryRepo extends CrudRepository<enquiry, String> {
     // @Query("Select i.client_name from clients i")
     // List<clients> client_name();
 
-    // @Transactional
-    // @Modifying(clearAutomatically = true)
-    // @Query("create items i set i.itemprice=:#{#newVal} where i.itemname=:#{#itemName}")
-    // void updateItem(@Param("newVal") int newVal, @Param("itemName") String itemname);
+     @Transactional
+     @Modifying(clearAutomatically = true)
+     @Query("update enquiry e set e.order_status=:#{#newVal} where e.order_id=:#{#orderid}")
+     void updateItem(@Param("newVal") String newVal, @Param("orderid") int orderid);
 
   
 

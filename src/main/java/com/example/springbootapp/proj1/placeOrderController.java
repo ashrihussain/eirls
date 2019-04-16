@@ -80,7 +80,8 @@ public String developerMethod(@RequestParam("orderid") int id){
    
        
          newlist.add(id);
-     
+
+         enqrepo.updateItem("confirmed", id);
         
 
         return "index";
