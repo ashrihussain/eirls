@@ -10,7 +10,7 @@
 <body>
   <jsp:include page="navbar.jsp"/>
 
-
+<form action="/confirmOrder" method="post">
 <table border="2">
 
 		<th>Order Number</th>
@@ -29,10 +29,12 @@
 				<td>${emp.getQuantity()}</td>
 				<td>${emp.getDue_date()}</td>
 				<td>${emp.getDate_placed()}</td>
-				<td><button> Confirm </button> </td>
+				<td><input type="hidden" value="${emp.getOrder_id()}" name="orderid">
+							<input type="submit" value="confirm" /> </td>
 			</tr>
 		</c:forEach>
 	</table>
+	</form>
  </form>
 </body>
 </html>
