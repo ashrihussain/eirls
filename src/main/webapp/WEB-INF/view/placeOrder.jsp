@@ -10,8 +10,7 @@
 <body>
   <jsp:include page="navbar.jsp"/>
 
-<form:form method="POST"
-          action="/confirmOrder">
+<form action="/confirmOrder" method="POST">
 <table border="2">
 
 		<th>Order Number</th>
@@ -34,6 +33,6 @@
 			</tr>
 		</c:forEach>
 	</table>
- </form:form>
+ </form>
 </body>
 </html>
