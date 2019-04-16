@@ -64,7 +64,7 @@ public ModelAndView showForm(ModelAndView model) {
        List<enquiry> list = enqrepo.findAll();
     
        model.addObject("list", list);
-      // model.setViewName("placeOrder");
+       model.setViewName("placeOrder");
 
        return new ModelAndView("placeOrder", "enquiryplace", new enquiryPlace());
 }
