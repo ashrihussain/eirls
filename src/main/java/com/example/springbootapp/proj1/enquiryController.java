@@ -93,7 +93,7 @@ public class enquiryController {
 
 
     @RequestMapping(value = "/placeEnquiries", method = RequestMethod.POST)
-    public String submitdetails(@Valid @ModelAttribute("enquiryplace")enquiryPlace enquiryplace, 
+    public String submitdetails(@Valid @ModelAttribute("enquiryplace") enquiryPlace enquiryplace, 
       BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
        
@@ -114,7 +114,7 @@ public class enquiryController {
         
         
 
-        return "/enquiryPlace";
+        return "redirect:/enquiryPlace";
     }
     
 
