@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,22 +68,18 @@ public ModelAndView showForm(ModelAndView model) {
        model.addObject("list", list);
        model.setViewName("placeOrder");
        
-return model;
+        return model;
     //   return new ModelAndView("placeOrder", "enquiryplace", new enquiryPlace());
 }
 
 
 
 @RequestMapping(value = "/confirmOrder", method = RequestMethod.POST)
-    public String submitdetails(@Valid @ModelAttribute("enquiryplace") enquiryPlace enquiryplace, 
-      BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-       
-            return "error";
-        }   
+public String developerMethod(@RequestParam("orderid") int id){
+        
    
        
-         newlist.add(enquiryplace.getOrderid());
+         newlist.add(id);
      
         
 

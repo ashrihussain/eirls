@@ -11,7 +11,7 @@
   <jsp:include page="navbar.jsp"/>
 
 <form:form method="POST"
-          action="/confirmOrder" modelAttribute= "model">
+          action="/confirmOrder">
 <table border="2">
 
 		<th>Order Number</th>
@@ -30,7 +30,7 @@
 				<td>${emp.getQuantity()}</td>
 				<td>${emp.getDue_date()}</td>
 				<td>${emp.getDate_placed()}</td>
-				<td> <form:input type="submit" value= "${emp.getOrder_id()}" path = "orderid"/></td>
+				<td> <form:input type="submit" value= "${emp.getOrder_id()}" name = "orderid" /></td>
 			</tr>
 		</c:forEach>
 	</table>
