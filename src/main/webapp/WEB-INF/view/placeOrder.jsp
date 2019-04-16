@@ -10,7 +10,8 @@
 <body>
   <jsp:include page="navbar.jsp"/>
 
-
+<form:form method="POST"
+          action="/confirmOrder" modelAttribute="enquiryplace">
 <table border="2">
 
 		<th>Order Number</th>
@@ -19,6 +20,7 @@
 		<th>Quantity</th>
 		<th>Delivery Date</th>
 		<th>Placed Date</th>
+		<th>Confirmation</th>
 
 		<c:forEach var="emp" items="${list}">
 			<tr>
@@ -28,10 +30,10 @@
 				<td>${emp.getQuantity()}</td>
 				<td>${emp.getDue_date()}</td>
 				<td>${emp.getDate_placed()}</td>
-
+				<td> <form:input type="submit" value= "${emp.getOrder_id()}" path = "orderid"/></td>
 			</tr>
 		</c:forEach>
 	</table>
-
+ </form:form>
 </body>
 </html>

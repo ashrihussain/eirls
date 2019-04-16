@@ -42,6 +42,15 @@ public class enquiryPlace{
 		this.date = date;
 	}
 
-    
+    private int orderid;
+
+	public int getOrderid() {
+		return this.orderid;
+	}
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+
 
 }

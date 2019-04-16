@@ -1,7 +1,10 @@
 package com.example.springbootapp.proj1;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -11,6 +14,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
@@ -22,6 +28,7 @@ public class placeOrderController {
     @Autowired
     enquiryRepo enqrepo;
 
+    List<Integer> newlist = new ArrayList<>();
 
     private HttpHeaders createHttpHeaders(String user, String password)
 {
@@ -57,12 +64,28 @@ public ModelAndView showForm(ModelAndView model) {
        List<enquiry> list = enqrepo.findAll();
     
        model.addObject("list", list);
-       model.setViewName("placeOrder");
+      // model.setViewName("placeOrder");
 
-        return model;
+       return new ModelAndView("placeOrder", "enquiryplace", new enquiryPlace());
 }
 
 
+
+@RequestMapping(value = "/confirmOrder", method = RequestMethod.POST)
+    public String submitdetails(@Valid @ModelAttribute("enquiryplace") enquiryPlace enquiryplace, 
+      BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+       
+            return "error";
+        }   
+   
+       
+         newlist.add(enquiryplace.getOrderid());
+     
+        
+
+        return "index";
+    }
 
 
 }
