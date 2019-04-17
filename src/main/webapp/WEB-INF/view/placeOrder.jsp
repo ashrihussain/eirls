@@ -21,6 +21,7 @@
 		<th>Delivery Date</th>
 		<th>Placed Date</th>
 		<th>Confirmation</th>
+		<th>Cancellation</th>
 
 		<c:forEach var="emp" items="${list}">
 			<tr>
@@ -31,7 +32,7 @@
 				<td>${emp.getDue_date()}</td>
 				<td>${emp.getDate_placed()}</td>
 				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="confirm"> Confirm </button></a> </td>
-				<td><a href="/cancelOrder"> <button type="submit" class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="cancel"> Cancel </button></a> </td>
+				<td><a href="/cancelOrder"> <button class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="cancel"> Cancel </button></a> </td>
 			</tr>
 		</c:forEach>
 	</table>
