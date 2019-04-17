@@ -30,11 +30,22 @@
 				<td>${emp.getDue_date()}</td>
 				<td>${emp.getDate_placed()}</td>
 				<td><input type="hidden" value="${emp.getOrder_id()}" name="orderid">
-							<input type="submit" value="confirm" /> </td>
+							<input type="submit" value="confirm" onclick="senddata(this)" /> </td>
 			</tr>
 		</c:forEach>
 	</table>
 	</form>
- </form>
+	 <script>
+          function senddata(e){
+              
+             document.getElementById('myField').value= e.value; 
+              
+              
+          }
+          
+          
+          
+          
+          </script>
 </body>
 </html>
