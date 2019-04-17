@@ -30,7 +30,8 @@
 				<td>${emp.getQuantity()}</td>
 				<td>${emp.getDue_date()}</td>
 				<td>${emp.getDate_placed()}</td>
-				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="confirm"> Cancel </button></a> </td>
+				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="confirm"> Confirm </button></a> </td>
+				<td><a href="/cancelOrder"> <button type="submit" class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="cancel"> Cancel </button></a> </td>
 			</tr>
 		</c:forEach>
 	</table>

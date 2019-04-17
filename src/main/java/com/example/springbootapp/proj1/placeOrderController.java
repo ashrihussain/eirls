@@ -88,4 +88,19 @@ public String developerMethod(@RequestParam("myField") int id){
     }
 
 
+    @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
+public String developerMethodcancel(@RequestParam("myField") int id){
+        
+   
+       
+         
+
+         enqrepo.deleteItem(id);
+
+         return "index";
+        
+
+    }
+
+
 }
