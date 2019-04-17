@@ -91,11 +91,11 @@ public String developerMethod(@RequestParam("myField") int id){
     @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
 public String developerMethodcancel(@RequestParam("myField") int id){
         
-   
+        String orderid = String.valueOf(id);
        
-         
+         enqrepo.deleteById(orderid);
 
-         enqrepo.deleteItem(id);
+      
 
          return "index";
         
