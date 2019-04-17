@@ -77,7 +77,7 @@ public class placeOrderController {
 
         for (enquiry e : list) {
 
-            Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(e.getDate_placed());  
+            Date date1 = e.getDate_placed();  
     
              Calendar c2 = Calendar.getInstance();
              c2.setTime(date1);
@@ -86,6 +86,8 @@ public class placeOrderController {
 
             if(currentdate >= placeddate + 1){
                 enqrepo.deleteItem(e.getOrder_id());
+
+                
             } 
             
         }

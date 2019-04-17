@@ -1,5 +1,7 @@
 package com.example.springbootapp.proj1;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -109,13 +111,13 @@ private String cancellation_penalty;
 	}
 
 	@Column(name = "date_placed")
-	private String date_placed;
+	private Date date_placed;
 
-	public String getDate_placed() {
+	public Date getDate_placed() {
 		return this.date_placed;
 	}
 
-	public void setDate_placed(String date_placed) {
+	public void setDate_placed(Date date_placed) {
 		this.date_placed = date_placed;
 	}
 

@@ -3,6 +3,7 @@ package com.example.springbootapp.proj1;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -59,13 +60,14 @@ public class enquiryController {
 	      LocalDate localDate = LocalDate.now();
 
         String s = "pending";
+        Date now = new Date();
        
 
 
         enquiry enq = new enquiry();
         enq.setProduct_name(enquiryplace.getProduct());
         enq.setQuantity(enquiryplace.getQuantity());
-        enq.setDate_placed(dtf.format(localDate).toString());
+        enq.setDate_placed(now);
         enq.setClient_name(enquiryplace.getName());
         enq.setDue_date(enquiryplace.getDate());
         enq.setOrder_status(s);
