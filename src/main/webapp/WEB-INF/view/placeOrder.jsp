@@ -11,6 +11,7 @@
   <jsp:include page="navbar.jsp"/>
 
 <form action="/confirmOrder" method="post">
+ <input type="hidden" name="myField" id="myField" value="" />
 <table border="2">
 
 		<th>Order Number</th>
@@ -29,8 +30,7 @@
 				<td>${emp.getQuantity()}</td>
 				<td>${emp.getDue_date()}</td>
 				<td>${emp.getDate_placed()}</td>
-				<td><input type="hidden" value="${emp.getOrder_id()}" name="orderid">
-							<input type="submit" value="confirm" onclick="senddata(this)" /> </td>
+				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="confirm"> Cancel </button></a> </td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -75,7 +75,7 @@ public ModelAndView showForm(ModelAndView model) {
 
 
 @RequestMapping(value = "/confirmOrder", method = RequestMethod.POST)
-public String developerMethod(@RequestParam("orderid") int id){
+public String developerMethod(@RequestParam("myField") int id){
         
    
        
