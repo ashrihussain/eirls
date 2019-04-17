@@ -1,7 +1,13 @@
 package com.example.springbootapp.proj1;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
@@ -32,39 +38,58 @@ public class placeOrderController {
 
     List<Integer> newlist = new ArrayList<>();
 
-    private HttpHeaders createHttpHeaders(String user, String password)
-{
-    String notEncoded = user + ":" + password;
-    String encodedAuth = Base64.getEncoder().encodeToString(notEncoded.getBytes());
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.add("Authorization", "Basic " + encodedAuth);
-    return headers;
-}
-
-private void doYourThing() 
-{
-    String theUrl = "https://eirls-mm.herokuapp.com/api/items-complete";
-    RestTemplate restTemplate = new RestTemplate();
-    try {
-        HttpHeaders headers = createHttpHeaders("fred","1234");
-        HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-        ResponseEntity<String> response = restTemplate.exchange(theUrl, HttpMethod.GET, entity, String.class);
-        System.out.println("Result - status ("+ response.getStatusCode() + ") has body: " + response.hasBody());
+    private HttpHeaders createHttpHeaders(String user, String password) {
+        String notEncoded = user + ":" + password;
+        String encodedAuth = Base64.getEncoder().encodeToString(notEncoded.getBytes());
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", "Basic " + encodedAuth);
+        return headers;
     }
-    catch (Exception eek) {
-        System.out.println("** Exception: "+ eek.getMessage());
+
+    private void doYourThing() {
+        String theUrl = "https://eirls-mm.herokuapp.com/api/items-complete";
+        RestTemplate restTemplate = new RestTemplate();
+        try {
+            HttpHeaders headers = createHttpHeaders("fred", "1234");
+            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            ResponseEntity<String> response = restTemplate.exchange(theUrl, HttpMethod.GET, entity, String.class);
+            System.out.println("Result - status (" + response.getStatusCode() + ") has body: " + response.hasBody());
+        } catch (Exception eek) {
+            System.out.println("** Exception: " + eek.getMessage());
+        }
     }
-}
 
+    @RequestMapping(value = "/showOrder", method = RequestMethod.GET)
+    public ModelAndView showForm(ModelAndView model) throws ParseException {
 
-@RequestMapping(value = "/showOrder", method = RequestMethod.GET)
-public ModelAndView showForm(ModelAndView model) {
+     Date now = new Date();
 
+  //  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+  //  LocalDate localDate = LocalDate.now();
 
-       enquiry enq = new enquiry();
-       List<enquiry> list = enqrepo.findAll();
+         Calendar calendar = Calendar.getInstance();
+         calendar.setTime(now);
+         int currentdate = calendar.get(Calendar.DAY_OF_WEEK);
+
+         enquiry enq = new enquiry();
+         List<enquiry> list = enqrepo.findPending();
+
+        for (enquiry e : list) {
+
+            Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(e.getDate_placed());  
     
+             Calendar c2 = Calendar.getInstance();
+             c2.setTime(date1);
+             int placeddate = c2.get(Calendar.DAY_OF_WEEK);
+
+
+            if(currentdate >= placeddate + 1){
+                enqrepo.deleteItem(e.getOrder_id());
+            } 
+            
+        }
+
        model.addObject("list", list);
        model.setViewName("placeOrder");
        

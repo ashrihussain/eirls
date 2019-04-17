@@ -55,7 +55,7 @@ public class enquiryController {
             return "error";
         }
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	      LocalDate localDate = LocalDate.now();
 
         String s = "pending";

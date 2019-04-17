@@ -14,10 +14,9 @@ public interface enquiryRepo extends CrudRepository<enquiry, String> {
     List<enquiry> findAll();
    // List<clients> findByItemname(String itemname);
    // List<clients> findDistinctItempriceByItemname(String Itemname);
-    
-
-    // @Query("Select i.client_name from clients i")
-    // List<clients> client_name();
+   
+     @Query("SELECT o FROM enquiry o WHERE o.order_status = 'pending'")
+     List<enquiry> findPending();
 
      @Transactional
      @Modifying(clearAutomatically = true)
