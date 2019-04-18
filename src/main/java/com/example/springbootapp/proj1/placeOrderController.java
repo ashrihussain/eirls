@@ -111,7 +111,7 @@ public String developerMethod(@RequestParam("myField") int id){
          enqrepo.updateItem("confirmed", id);
         
 
-        return "index";
+         return "redirect:/showEnquiry";
     }
 
 
@@ -122,7 +122,7 @@ public String developerMethodcancel(@RequestParam("myField") int id){
 
       
 
-         return "index";
+      return "redirect:/showOrder";
         
 
     }
