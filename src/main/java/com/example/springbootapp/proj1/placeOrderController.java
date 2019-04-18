@@ -60,7 +60,7 @@ public class placeOrderController {
         }
     }
 
-    @RequestMapping(value = "/showOrder", method = RequestMethod.GET)
+    @RequestMapping(value = "/showEnquiry", method = RequestMethod.GET)
     public ModelAndView showForm(ModelAndView model) throws ParseException {
 
      Date now = new Date();
@@ -96,7 +96,7 @@ public class placeOrderController {
        model.setViewName("placeOrder");
        
         return model;
-    //   return new ModelAndView("placeOrder", "enquiryplace", new enquiryPlace());
+   
 }
 
 
@@ -118,9 +118,7 @@ public String developerMethod(@RequestParam("myField") int id){
     @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
 public String developerMethodcancel(@RequestParam("myField") int id){
         
-        String orderid = String.valueOf(id);
-       
-         enqrepo.deleteById(orderid);
+      enqrepo.deleteItem(id);
 
       
 
@@ -128,6 +126,20 @@ public String developerMethodcancel(@RequestParam("myField") int id){
         
 
     }
+
+    @RequestMapping(value = "/showOrder", method = RequestMethod.GET)
+    public ModelAndView showForm2(ModelAndView model) throws ParseException {
+
+
+         enquiry enq = new enquiry();
+         List<enquiry> list = enqrepo.findConfirmed();
+
+
+       model.addObject("list", list);
+       model.setViewName("showOrder");
+       
+        return model;
+}
 
 
 }

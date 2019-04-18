@@ -18,6 +18,10 @@ public interface enquiryRepo extends CrudRepository<enquiry, String> {
      @Query("SELECT o FROM enquiry o WHERE o.order_status = 'pending'")
      List<enquiry> findPending();
 
+
+     @Query("SELECT o FROM enquiry o WHERE o.order_status = 'confirmed'")
+     List<enquiry> findConfirmed();
+
      @Transactional
      @Modifying(clearAutomatically = true)
      @Query("update enquiry e set e.order_status=:#{#newVal} where e.order_id=:#{#orderid}")
