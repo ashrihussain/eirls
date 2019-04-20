@@ -75,9 +75,10 @@ public class placeOrderController {
         int currentmonth = date.getMonth();
 
          enquiry enq = new enquiry();
-         List<enquiry> list = enqrepo.findPending();
+         List<enquiry> plist = enqrepo.findPending();
+         List<enquiry> list = new ArrayList<>();
 
-        for (enquiry e : list) {
+        for (enquiry e : plist) {
 
             Date date1 = e.getDate_placed();  
           int placedmonth = date1.getMonth();
@@ -86,7 +87,6 @@ public class placeOrderController {
              int placeddate = c2.get(Calendar.DAY_OF_MONTH);
 
 
-           
 
             if(currentdate > placeddate){
 
@@ -96,12 +96,12 @@ public class placeOrderController {
             } 
 
             if(currentmonth > placedmonth){
-                
+
                 enqrepo.deleteItem(e.getOrder_id());
 
             }
 
-        
+           list.add(e);
             
         }
 
