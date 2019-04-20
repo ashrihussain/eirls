@@ -14,13 +14,13 @@ public class clients{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "client_id")
-    private String client_id;
+    private int client_id;
 
-	public String getClient_id() {
+	public int getClient_id() {
 		return this.client_id;
 	}
 
-	public void setClient_id(String client_id) {
+	public void setClient_id(int client_id) {
 		this.client_id = client_id;
 	}
 

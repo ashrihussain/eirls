@@ -25,7 +25,7 @@ public class registerClientController {
     }
 
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String submit(@Valid @ModelAttribute("clientmodel")clientModel clientmodel, 
       BindingResult result, ModelMap model) {
         if (result.hasErrors()) {

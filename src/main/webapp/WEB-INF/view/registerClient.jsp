@@ -9,7 +9,7 @@
 <body>
   <jsp:include page="navbar.jsp"/>
    <form:form method="POST"
-          action="/register" modelAttribute="clientmodel">
+          action="/registration" modelAttribute="clientmodel">
              <table>
                 <tr>
                     <td><form:label path="name">Client Name</form:label></td>
