@@ -70,7 +70,7 @@ public class placeOrderController {
 
          Calendar calendar = Calendar.getInstance();
          calendar.setTime(now);
-         int currentdate = calendar.get(Calendar.DAY_OF_WEEK);
+         int currentdate = calendar.get(Calendar.DAY_OF_MONTH);
 
          enquiry enq = new enquiry();
          List<enquiry> list = enqrepo.findPending();
@@ -81,7 +81,7 @@ public class placeOrderController {
     
              Calendar c2 = Calendar.getInstance();
              c2.setTime(date1);
-             int placeddate = c2.get(Calendar.DAY_OF_WEEK);
+             int placeddate = c2.get(Calendar.DAY_OF_MONTH);
 
 
             if(currentdate > placeddate){
