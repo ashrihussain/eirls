@@ -40,15 +40,15 @@ public class clients{
 	}
 
 
-    @Column(name = "client_trade")
-    private String client_trade;
+    @Column(name = "client_trading_name")
+    private String client_trading_name;
 
 	public String getClient_trade() {
-		return this.client_trade;
+		return this.client_trading_name;
 	}
 
-	public void setClient_trade(String client_trade) {
-		this.client_trade = client_trade;
+	public void setClient_trade(String client_trading_name) {
+		this.client_trading_name = client_trading_name;
 	}
 
 
@@ -87,19 +87,22 @@ public class clients{
 		this.client_status = client_status;
 	}
 
+	@Column(name = "client_age")
+	private int client_age;
+
+	public int getClient_age() {
+		return this.client_age;
+	}
+
+	public void setClient_age(int client_age) {
+		this.client_age = client_age;
+	}
+
     
     public clients() {
     }
 
-    public clients (String client_id, String client_name, String client_trade, String client_address, String client_contact, String client_status) {
-        super();
-        this.client_id = client_id;
-        this.client_name = client_name;
-        this.client_trade = client_trade;
-        this.client_address = client_address;
-        this.client_contact = client_contact;
-        this.client_status = client_status;
-    }
+
 
 
 }
