@@ -86,15 +86,22 @@ public class placeOrderController {
              int placeddate = c2.get(Calendar.DAY_OF_MONTH);
 
 
-            if(currentmonth >= placedmonth){
+           
 
             if(currentdate > placeddate){
-                
+
                 enqrepo.deleteItem(e.getOrder_id());
 
                 
             } 
-        }
+
+            if(currentmonth > placedmonth){
+                
+                enqrepo.deleteItem(e.getOrder_id());
+
+            }
+
+        
             
         }
 
