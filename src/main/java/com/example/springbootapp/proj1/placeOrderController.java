@@ -71,6 +71,8 @@ public class placeOrderController {
          Calendar calendar = Calendar.getInstance();
          calendar.setTime(now);
          int currentdate = calendar.get(Calendar.DAY_OF_MONTH);
+        Date date = new Date();
+        int currentmonth = date.getMonth();
 
          enquiry enq = new enquiry();
          List<enquiry> list = enqrepo.findPending();
@@ -78,17 +80,21 @@ public class placeOrderController {
         for (enquiry e : list) {
 
             Date date1 = e.getDate_placed();  
-    
+          int placedmonth = date1.getMonth();
              Calendar c2 = Calendar.getInstance();
              c2.setTime(date1);
              int placeddate = c2.get(Calendar.DAY_OF_MONTH);
 
 
+            if(currentmonth >= placedmonth){
+
             if(currentdate > placeddate){
+                
                 enqrepo.deleteItem(e.getOrder_id());
 
                 
             } 
+        }
             
         }
 
