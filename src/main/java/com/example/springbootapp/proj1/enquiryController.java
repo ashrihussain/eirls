@@ -69,8 +69,7 @@ public class enquiryController {
 
 
         enquiry enq = new enquiry();
-        enq.setProduct_name(enquiryplace.getProductname());
-        enq.setQuantity(enquiryplace.getQuantity());
+    
         enq.setDate_placed(now);
         enq.setClient_name(enquiryplace.getClientname());
         enq.setDue_date(enquiryplace.getDate());
@@ -79,12 +78,12 @@ public class enquiryController {
 
 
 
-        // for (String productname : itemArrray) {
+        for (String productname : itemArrray) {
             
-        //         orderrepo.updateItem(e.getOrder_id(), productname);
-        //         }   
+          ordrepo.updateItem(e.getOrder_id(), productname);
+                }   
         
-      //  itemArrray.clear();
+        itemArrray.clear();
 
         return "index";
     }

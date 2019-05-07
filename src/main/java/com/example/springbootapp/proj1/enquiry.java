@@ -88,27 +88,6 @@ private String cancellation_penalty;
 		this.cancellation_penalty = cancellation_penalty;
 	}
 
-	@Column(name = "product_id")
-	private int product_id;
-
-	public int getProduct_id() {
-		return this.product_id;
-	}
-
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
-	}
-
-	@Column(name = "quantity")
-	private int quantity;
-
-	public int getQuantity() {
-		return this.quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
 
 	@Column(name = "date_placed")
 	private Date date_placed;
@@ -120,19 +99,6 @@ private String cancellation_penalty;
 	public void setDate_placed(Date date_placed) {
 		this.date_placed = date_placed;
 	}
-
-	@Column(name="product_name")
-	private String product_name;
-
-	public String getProduct_name() {
-		return this.product_name;
-	}
-
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
-	}
-
-
 
 
 

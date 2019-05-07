@@ -12,11 +12,11 @@
           action="/placeEnquiries" modelAttribute="enquiryplace">
              <table>
                 <tr>
-                    <td><form:label path="product">Name</form:label></td>
-                    <td><form:input path="product"/></td>
+                    <td><form:label path="productname">Product Name</form:label></td>
+                    <td><form:input path="productname"/></td>
                 </tr>
                 <tr>
-                    <td><form:label path="quantity">quantity</form:label></td>
+                    <td><form:label path="quantity">Quantity</form:label></td>
                     <td><form:input path="quantity"/></td>
                 </tr>
                 <tr>
@@ -24,5 +24,7 @@
                 </tr>
             </table>
         </form:form>
+
+        <button> <a href="/enquiry">Continue</a> </button>
 </body>
 </html>
