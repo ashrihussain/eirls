@@ -13,12 +13,14 @@ import java.util.List;
 import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 
+import org.hibernate.annotations.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -38,23 +40,35 @@ public class placeOrderController {
 
     List<Integer> newlist = new ArrayList<>();
 
-    private HttpHeaders createHttpHeaders(String user, String password) {
-        String notEncoded = user + ":" + password;
-        String encodedAuth = Base64.getEncoder().encodeToString(notEncoded.getBytes());
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Authorization", "Basic " + encodedAuth);
-        return headers;
-    }
-
-    private void doYourThing() {
+    private void getDetails() {
         String theUrl = "https://eirls-mm.herokuapp.com/api/items-complete";
+        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
         RestTemplate restTemplate = new RestTemplate();
+
         try {
-            HttpHeaders headers = createHttpHeaders("fred", "1234");
+            // HttpHeaders headers = createHttpHeaders("fred", "1234"); //token
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Authorization", "Bearer " + token);
+
+            // HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            // ResponseEntity<String> response = restTemplate.exchange(theUrl, HttpMethod.GET, entity, String.class);
+
+           
             HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            ResponseEntity<String> response = restTemplate.exchange(theUrl, HttpMethod.GET, entity, String.class);
-            System.out.println("Result - status (" + response.getStatusCode() + ") has body: " + response.hasBody());
+            
+            ResponseEntity<MaterialDetails[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity, MaterialDetails[].class);
+            
+            MaterialDetails[] resp = respEntity.getBody();
+            for (MaterialDetails var : resp) {
+                System.out.println(var.getName());
+                
+            }
+
+
+            // System.out.println("Result - status (" + response.getStatusCode() + ") has body: " + response.hasBody());
+            // System.out.println(response);
         } catch (Exception eek) {
             System.out.println("** Exception: " + eek.getMessage());
         }
@@ -63,96 +77,82 @@ public class placeOrderController {
     @RequestMapping(value = "/showEnquiry", method = RequestMethod.GET)
     public ModelAndView showForm(ModelAndView model) throws ParseException {
 
-     Date now = new Date();
+        Date now = new Date();
+        getDetails();
 
-  //  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-  //  LocalDate localDate = LocalDate.now();
+        // DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        // LocalDate localDate = LocalDate.now();
 
-         Calendar calendar = Calendar.getInstance();
-         calendar.setTime(now);
-         int currentdate = calendar.get(Calendar.DAY_OF_MONTH);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(now);
+        int currentdate = calendar.get(Calendar.DAY_OF_MONTH);
         Date date = new Date();
         int currentmonth = date.getMonth();
 
-         enquiry enq = new enquiry();
-         List<enquiry> plist = enqrepo.findPending();
-         List<enquiry> list = new ArrayList<>();
+        enquiry enq = new enquiry();
+        List<enquiry> plist = enqrepo.findPending();
+        List<enquiry> list = new ArrayList<>();
 
         for (enquiry e : plist) {
 
-            Date date1 = e.getDate_placed();  
-          int placedmonth = date1.getMonth();
-             Calendar c2 = Calendar.getInstance();
-             c2.setTime(date1);
-             int placeddate = c2.get(Calendar.DAY_OF_MONTH);
+            Date date1 = e.getDate_placed();
+            int placedmonth = date1.getMonth();
+            Calendar c2 = Calendar.getInstance();
+            c2.setTime(date1);
+            int placeddate = c2.get(Calendar.DAY_OF_MONTH);
 
-
-
-            if(currentdate > placeddate){
-
-                enqrepo.deleteItem(e.getOrder_id());
-
-                
-            } 
-
-            if(currentmonth > placedmonth){
+            if (currentdate > placeddate) {
 
                 enqrepo.deleteItem(e.getOrder_id());
 
             }
 
-           list.add(e);
-            
+            if (currentmonth > placedmonth) {
+
+                enqrepo.deleteItem(e.getOrder_id());
+
+            }
+
+            list.add(e);
+
         }
 
-       model.addObject("list", list);
-       model.setViewName("placeOrder");
-       
+        model.addObject("list", list);
+        model.setViewName("placeOrder");
+
         return model;
-   
-}
 
-
-
-@RequestMapping(value = "/confirmOrder", method = RequestMethod.POST)
-public String developerMethod(@RequestParam("myField") int id){
-        
-   
-       
-         newlist.add(id);
-
-         enqrepo.updateItem("confirmed", id);
-        
-
-         return "redirect:/showEnquiry";
     }
 
+    @RequestMapping(value = "/confirmOrder", method = RequestMethod.POST)
+    public String developerMethod(@RequestParam("myField") int id) {
+
+        newlist.add(id);
+
+        enqrepo.updateItem("confirmed", id);
+
+        return "redirect:/showEnquiry";
+    }
 
     @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
-public String developerMethodcancel(@RequestParam("myField") int id){
-        
-      enqrepo.deleteItem(id);
+    public String developerMethodcancel(@RequestParam("myField") int id) {
 
-      
+        enqrepo.deleteItem(id);
 
-      return "redirect:/showOrder";
-        
+        return "redirect:/showOrder";
 
     }
 
     @RequestMapping(value = "/showOrder", method = RequestMethod.GET)
     public ModelAndView showForm2(ModelAndView model) throws ParseException {
 
+        enquiry enq = new enquiry();
+        List<enquiry> list = enqrepo.findConfirmed();
 
-         enquiry enq = new enquiry();
-         List<enquiry> list = enqrepo.findConfirmed();
+        model.addObject("list", list);
+        model.setViewName("showOrder");
 
-
-       model.addObject("list", list);
-       model.setViewName("showOrder");
-       
         return model;
-}
-
+    }
 
 }

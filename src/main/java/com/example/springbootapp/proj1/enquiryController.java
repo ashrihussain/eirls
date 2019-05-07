@@ -47,7 +47,11 @@ public class enquiryController {
     @RequestMapping(value = "/enquiry", method = RequestMethod.GET)
     public ModelAndView showForm() {
         return new ModelAndView("enquiryView", "enquiryplace", new enquiryPlace());
+
+
     }
+    
+
     
     @RequestMapping(value = "/addEnquiry", method = RequestMethod.POST)
     public String submit(@Valid @ModelAttribute("enquiryplace")enquiryPlace enquiryplace, 
@@ -65,10 +69,10 @@ public class enquiryController {
 
 
         enquiry enq = new enquiry();
-        enq.setProduct_name(enquiryplace.getProduct());
+        enq.setProduct_name(enquiryplace.getProductname());
         enq.setQuantity(enquiryplace.getQuantity());
         enq.setDate_placed(now);
-        enq.setClient_name(enquiryplace.getName());
+        enq.setClient_name(enquiryplace.getClient());
         enq.setDue_date(enquiryplace.getDate());
         enq.setOrder_status(s);
         enquiry e =  enqrepo.save(enq);
@@ -103,10 +107,10 @@ public class enquiryController {
         }   
    
        
-         itemArrray.add(enquiryplace.getProduct()); 
+         itemArrray.add(enquiryplace.getProductname()); 
          orderitems ord = new orderitems();
         
-         ord.setProduct_name(enquiryplace.getProduct());
+         ord.setProduct_name(enquiryplace.getProductname());
          ord.setProduct_quantity(enquiryplace.getQuantity());
 
          ordrepo.save(ord);

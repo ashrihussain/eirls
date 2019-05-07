@@ -2,24 +2,24 @@ package com.example.springbootapp.proj1;
 
 public class enquiryPlace{
 
-    private String name;
+    private int id;
 
-	public String getName() {
-		return this.name;
+	public int getId() {
+		return this.id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-    private String product;
+    private String client_name;
 
-	public String getProduct() {
-		return this.product;
+	public String getClient() {
+		return this.client_name;
 	}
 
-	public void setProduct(String product) {
-		this.product = product;
+	public void setClient(String client_name) {
+		this.client_name = client_name;
 	}
 
     private int quantity;
@@ -51,6 +51,19 @@ public class enquiryPlace{
 	public void setOrderid(int orderid) {
 		this.orderid = orderid;
 	}
+
+
+	public String productname;
+
+	public String getProductname() {
+		return this.productname;
+	}
+
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+
+
 
 
 }
