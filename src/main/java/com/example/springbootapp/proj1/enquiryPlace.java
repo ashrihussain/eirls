@@ -12,15 +12,17 @@ public class enquiryPlace{
 		this.id = id;
 	}
 
-    private String client_name;
+    private String clientname;
 
-	public String getClient() {
-		return this.client_name;
+	public String getClientname() {
+		return this.clientname;
 	}
 
-	public void setClient(String client_name) {
-		this.client_name = client_name;
+	public void setClientname(String clientname) {
+		this.clientname = clientname;
 	}
+
+
 
     private int quantity;
 
@@ -62,6 +64,9 @@ public class enquiryPlace{
 	public void setProductname(String productname) {
 		this.productname = productname;
 	}
+
+
+	
 
 
 

@@ -72,7 +72,7 @@ public class enquiryController {
         enq.setProduct_name(enquiryplace.getProductname());
         enq.setQuantity(enquiryplace.getQuantity());
         enq.setDate_placed(now);
-        enq.setClient_name(enquiryplace.getClient());
+        enq.setClient_name(enquiryplace.getClientname());
         enq.setDue_date(enquiryplace.getDate());
         enq.setOrder_status(s);
         enquiry e =  enqrepo.save(enq);

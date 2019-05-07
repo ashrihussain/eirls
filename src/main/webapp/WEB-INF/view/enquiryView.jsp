@@ -18,8 +18,8 @@
           action="/addEnquiry" modelAttribute="enquiryplace">
 <table>
                 <tr>
-                    <td><form:label path="client_name">Client Name</form:label></td>
-                    <td><form:input path="client_name"/></td>
+                    <td><form:label path="clientname">Client Name</form:label></td>
+                    <td><form:input path="clientname"/></td>
                 </tr>
                  <tr>
                     <td><form:label path="productname">Product name</form:label></td>
