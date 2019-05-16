@@ -251,7 +251,6 @@ public class placeOrderController {
 
         List<enquiry> list = enqrepo.findPending();
             
-
         return list;
     }
 

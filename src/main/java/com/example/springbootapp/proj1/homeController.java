@@ -17,12 +17,6 @@ public class homeController {
     }
 
 
-    @RequestMapping("/welcome")
-    public String Welcome(){
-        return "welcome page";
-    }
-
-
     @Value("${welcome.message}")
     private String message = "Hello World";
 
