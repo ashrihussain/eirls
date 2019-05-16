@@ -19,6 +19,11 @@
                     <td><form:label path="quantity">Quantity</form:label></td>
                     <td><form:input path="quantity"/></td>
                 </tr>
+                 <tr>
+                    <td><form:radiobutton path="returntype" value="Finished Good"/> Finished Good
+                     <form:radiobutton path="returntype" value="Raw Material"/> Raw Material 
+                      </td>
+                </tr>
                 <tr>
                     <td><input type="submit" value="Submit"/></td>
                 </tr>

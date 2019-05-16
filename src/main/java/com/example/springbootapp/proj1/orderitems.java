@@ -127,7 +127,18 @@ public class orderitems{
 		this.material_order_id = material_order_id;
 	}
 
-	
+	@Column(name = "product_type")
+	private String product_type;
+
+	public String getProduct_type() {
+		return this.product_type;
+	}
+
+	public void setProduct_type(String product_type) {
+		this.product_type = product_type;
+	}
+
+
 
 
 
