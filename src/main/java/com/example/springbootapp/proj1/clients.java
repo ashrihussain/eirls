@@ -1,11 +1,16 @@
 package com.example.springbootapp.proj1;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "clients", schema = "nCxJspI8Zf")
@@ -97,6 +102,21 @@ public class clients{
 	public void setClient_age(int client_age) {
 		this.client_age = client_age;
 	}
+
+	@OneToMany(mappedBy = "cid")
+	@JsonIgnore
+  private Set<enquiry> enq;
+
+	public Set<enquiry> getEnq() {
+		return this.enq;
+	}
+
+	public void setEnq(Set<enquiry> enq) {
+		this.enq = enq;
+	}
+
+
+
 
     
     public clients() {

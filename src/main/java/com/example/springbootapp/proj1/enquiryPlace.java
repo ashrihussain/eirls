@@ -55,7 +55,7 @@ public class enquiryPlace{
 	}
 
 
-	public String productname;
+	private String productname;
 
 	public String getProductname() {
 		return this.productname;
@@ -66,7 +66,29 @@ public class enquiryPlace{
 	}
 
 
-	
+	private String returntype;
+
+	public String getReturntype() {
+		return this.returntype;
+	}
+
+	public void setReturntype(String returntype) {
+		this.returntype = returntype;
+	}
+
+	private String description;
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+
 
 
 

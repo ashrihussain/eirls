@@ -18,14 +18,10 @@
           action="/addEnquiry" modelAttribute="enquiryplace">
 <table>
                 <tr>
-                    <td><form:label path="clientname">Client Name</form:label></td>
-                    <td><form:input path="clientname"/></td>
+                    <td><form:label path="id">Client ID</form:label></td>
+                    <td><form:input path="id"/></td>
                 </tr>
-                   <tr>
-                    <td><form:label path="date">
-                      Due Date</form:label></td>
-                    <td><form:input path="date"/></td>
-                </tr>
+                  
                 <tr>
                     <td><input type="submit" value="Submit"/></td>
                 </tr>

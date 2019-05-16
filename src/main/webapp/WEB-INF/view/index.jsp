@@ -6,6 +6,6 @@
 </head>
 <body>
   <jsp:include page="navbar.jsp"/>
-    <p>${greeting}</p>
+    <p>Sales home screen</p>
 </body>
 </html>

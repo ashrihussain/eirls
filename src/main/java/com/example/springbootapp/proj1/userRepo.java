@@ -19,6 +19,9 @@ public interface userRepo extends CrudRepository<clients, String> {
     @Query("Select i.client_id from clients i")
     List<clients> client_id();
 
+    @Query("SELECT o FROM clients o WHERE o.client_id=:#{#cid}")
+     clients getclient(@Param("cid") int cid);
+
 
 
 

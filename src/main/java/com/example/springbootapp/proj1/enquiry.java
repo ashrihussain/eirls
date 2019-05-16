@@ -1,14 +1,22 @@
 package com.example.springbootapp.proj1;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "enquiry", schema = "nCxJspI8Zf")
@@ -42,6 +50,8 @@ private int order_id;
 
 
 
+
+
 @Column(name = "client_order_id")
 private String client_order_id;
 
@@ -53,17 +63,6 @@ private String client_order_id;
 		this.client_order_id = client_order_id;
 	}
 
-
-@Column(name = "due_date")
-private String due_date;
-
-	public String getDue_date() {
-		return this.due_date;
-	}
-
-	public void setDue_date(String due_date) {
-		this.due_date = due_date;
-	}
 
 
 @Column(name = "order_status")
@@ -99,6 +98,49 @@ private String cancellation_penalty;
 	public void setDate_placed(Date date_placed) {
 		this.date_placed = date_placed;
 	}
+
+	@OneToMany(mappedBy = "enq")
+	@JsonIgnoreProperties("enq")
+  private Set<orderitems> ord;
+
+	public Set<orderitems> getOrd() {
+		return this.ord;
+	}
+
+	public void setOrd(Set<orderitems> ord) {
+		this.ord = ord;
+	}
+
+
+	@ManyToOne
+	@JoinColumn(name = "client_id", nullable = true)
+	private clients cid;
+
+	public clients getCid() {
+		return this.cid;
+	}
+
+	public void setCid(clients cid) {
+		this.cid = cid;
+	}
+
+
+	@OneToOne(mappedBy = "eq")
+	private delivery del;
+
+	public delivery getDel() {
+		return this.del;
+	}
+
+	public void setDel(delivery del) {
+		this.del = del;
+	}
+
+
+
+
+
+
 
 
 

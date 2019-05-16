@@ -1,5 +1,6 @@
 package com.example.springbootapp.proj1;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -22,11 +23,23 @@ public interface enquiryRepo extends CrudRepository<enquiry, String> {
      @Query("SELECT o FROM enquiry o WHERE o.order_status = 'confirmed'")
      List<enquiry> findConfirmed();
 
+     @Query("SELECT o.client_name FROM enquiry o WHERE o.cid=:#{#cid}")
+     String findCustomer(@Param("cid") clients cid);
+
+
      @Transactional
      @Modifying(clearAutomatically = true)
      @Query("update enquiry e set e.order_status=:#{#newVal} where e.order_id=:#{#orderid}")
      void updateItem(@Param("newVal") String newVal, @Param("orderid") int orderid);
 
+    //  @Transactional
+    //  @Modifying(clearAutomatically = true)
+    //  @Query("update enquiry e set e.order_status=:#{#newVal}, e.date_placed=:#{#date}, e.client_name=:#{#name}, e.due_date=:#{#duedate} where e.order_id=:#{#orderid}")
+    //  void updateOrder(@Param("newVal") String newVal, @Param("date") Date date, @Param("name") String name, @Param("duedate") String duedate, @Param("orderid") int orderid);
+
+
+    @Query("SELECT o FROM enquiry o WHERE o.order_id=:#{#oid}")
+     enquiry getEnquiry(@Param("oid") int oid);
   
      @Transactional
      @Modifying(clearAutomatically = true)

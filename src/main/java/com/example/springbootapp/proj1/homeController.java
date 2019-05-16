@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class homeController {
 
     @ResponseBody
-    @GetMapping("/home")
+    @GetMapping("/homesu")
     public String Hello(){
         return "It's working ashriii";
     }
@@ -26,9 +26,9 @@ public class homeController {
     @Value("${welcome.message}")
     private String message = "Hello World";
 
-    @RequestMapping("/check")
-    public String index(Model model) {
-        model.addAttribute("greeting", message);
+    @RequestMapping("/home")
+    public String index() {
+  
         return "index";
     }
 }

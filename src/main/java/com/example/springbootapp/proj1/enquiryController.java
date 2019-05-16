@@ -1,13 +1,16 @@
 package com.example.springbootapp.proj1;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -26,11 +29,11 @@ import org.springframework.web.servlet.view.RedirectView;
 public class enquiryController {
 
    // List<Integer> quantityArray = new ArrayList<>();
-    List<String> itemArrray = new ArrayList<>();
+    List<Integer> itemArrray = new ArrayList<>();
 
   //  int i = itemArrray.size();
     
-    
+    int saved_id;
 
     @Autowired
     itemRepo itemrepo;
@@ -51,6 +54,7 @@ public class enquiryController {
 
     }
     
+ 
 
     
     @RequestMapping(value = "/addEnquiry", method = RequestMethod.POST)
@@ -65,25 +69,48 @@ public class enquiryController {
 
         String s = "pending";
         Date now = new Date();
-       
+        LocalDateTime nows = LocalDateTime.now();
 
+        clients c = userrepo.getclient(enquiryplace.getId());
+
+        
+       // String name = enqrepo.findCustomer(c);
+
+        
 
         enquiry enq = new enquiry();
     
+        enq.setCid(c);
         enq.setDate_placed(now);
-        enq.setClient_name(enquiryplace.getClientname());
-        enq.setDue_date(enquiryplace.getDate());
+        enq.setClient_name(c.getClient_name());
+      
         enq.setOrder_status(s);
-        enquiry e =  enqrepo.save(enq);
+
+    //    enqrepo.updateOrder(s, now, enquiryplace.getClientname(), enquiryplace.getDate(), saved_id);
+       enquiry e = enqrepo.save(enq);
 
 
 
-        for (String productname : itemArrray) {
-            
-          ordrepo.updateItem(e.getOrder_id(), productname);
-                }   
-        
+
+        for (int var : itemArrray) {
+         
+          ordrepo.updateItem(e, var);
+         
+        }
+         
         itemArrray.clear();
+
+
+        if(c.getClient_status().equals("Invalid")) {
+
+          enqrepo.delete(e);
+
+        }
+               
+        
+      
+        
+       
 
         return "index";
     }
@@ -105,16 +132,24 @@ public class enquiryController {
             return "error";
         }   
    
-       
-         itemArrray.add(enquiryplace.getProductname()); 
+       String p = "Pending";
+        
+   
+
+        
          orderitems ord = new orderitems();
         
+    //     ord.setOrder_id(e.getOrder_id());
          ord.setProduct_name(enquiryplace.getProductname());
          ord.setProduct_quantity(enquiryplace.getQuantity());
+         ord.setAvailability(p);
+         ord.setProduct_status("Pending");
 
-         ordrepo.save(ord);
+        orderitems o = ordrepo.save(ord);
+
+         itemArrray.add(o.getOrderitems_id()); 
          
-       
+      //  saved_id = e.getOrder_id();
        
         
         

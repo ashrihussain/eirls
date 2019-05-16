@@ -16,7 +16,20 @@ List<orderitems> findAll();
 
  @Transactional
 @Modifying(clearAutomatically = true)
- @Query("Update orderitems i set i.order_id=:#{#newVal} where i.product_name=:#{#itemName}")
- void updateItem(@Param("newVal") int newVal, @Param("itemName") String itemname);
+ @Query("Update orderitems i set i.enq=:#{#newVal} where i.orderitems_id=:#{#itemid}")
+ void updateItem(@Param("newVal") enquiry newVal, @Param("itemid") int itemid);
+
+
+  @Transactional
+ @Modifying(clearAutomatically = true)
+ @Query("delete orderitems e where e.enq=:#{#orderid}")
+   void deleteItem(@Param("orderid") enquiry orderid);
+
+   
+ @Transactional
+ @Modifying(clearAutomatically = true)
+  @Query("Update orderitems i set i.product_status=:#{#newVal} where i.orderitems_id=:#{#itemid}")
+  void updateStatus(@Param("newVal") String newVal, @Param("itemid") int itemid);
+
 
 }

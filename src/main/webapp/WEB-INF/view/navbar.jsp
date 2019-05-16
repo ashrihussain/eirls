@@ -73,24 +73,23 @@
   
     <body>
     <div class="NavBar">
-    <a href="Home.jsp">    <button class="dropbtn">Home </button></a> 
+    <a href="/home">    <button class="dropbtn">Home </button></a> 
             
             
  <div class="dropdown">
   <button class="dropbtn">Enquiry</button>
   <div class="dropdown-content">
-    <a href="/place">Place Enquiry</a>
-    <a href="viewenq">View Enquiries</a>
+    <a href="/enquiryPlace">Place Enquiry</a>
+    <a href="/showEnquiry">View Enquiries</a>
     </div>
     </div>
             
  <div class="dropdown">
   <button class="dropbtn">Orders</button>
   <div class="dropdown-content">
-    <a>Confirm Order</a>
-    <a>Cancel Order</a>
-    <a>Return Order</a>
-    <a>View Order Details</a>
+   <a href="/deliveryDetails">Confirm Order</a>
+    <a href="/showOrder">Show Orders</a>
+    <a href="/returnItems">Return Products</a>
     </div>
     </div>
     
