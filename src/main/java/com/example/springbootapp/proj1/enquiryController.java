@@ -112,7 +112,7 @@ public class enquiryController {
         
        
 
-        return "index";
+        return "redirect:/showEnquiry";
     }
 
   

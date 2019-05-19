@@ -86,6 +86,8 @@ public class placeOrderController {
                      if(var.getQuantity() > itm.getProduct_quantity()){
                     itm.setAvailability("Available");
                      itm.setMaterial_order_id(var.getId());
+                     itm.setProduct_type("Finished Good");
+                    
 
                     System.out.println(var.getId());
                     quantity = quantity - itm.getProduct_quantity();
@@ -110,6 +112,76 @@ public class placeOrderController {
         }
     }
 
+    private void getDetailsRaw() {
+        String theUrl = "https://eirls-mm.herokuapp.com/api/items-raw";
+        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
+        RestTemplate restTemplate = new RestTemplate();
+
+
+        try {
+            // HttpHeaders headers = createHttpHeaders("fred", "1234"); //token
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Authorization", "Bearer " + token);
+
+            // HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            // ResponseEntity<String> response = restTemplate.exchange(theUrl, HttpMethod.GET, entity, String.class);
+
+           
+            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            
+            ResponseEntity<MaterialDetails[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity, MaterialDetails[].class);
+            List<orderitems> orderitemslist = ordrepo.findAll();
+
+           
+
+           
+
+            MaterialDetails[] resp = respEntity.getBody();
+            for (MaterialDetails var : resp) {
+                int quantity = var.getQuantity();
+                for (orderitems itm : orderitemslist) {
+
+                 if(var.getName().equals(itm.getProduct_name())){
+                     if(var.getQuantity() > itm.getProduct_quantity()){
+                    itm.setAvailability("Available");
+                     itm.setMaterial_order_id(var.getId());
+                     itm.setProduct_type("Raw Material");
+                    
+
+                    System.out.println(var.getId());
+                    quantity = quantity - itm.getProduct_quantity();
+                    System.out.println(quantity);
+                    ordrepo.save(itm);
+                     }
+                }
+                   
+                }
+                
+
+             
+                
+            }
+
+
+
+            // System.out.println("Result - status (" + response.getStatusCode() + ") has body: " + response.hasBody());
+            // System.out.println(response);
+        } catch (Exception eek) {
+            System.out.println("** Exception: " + eek.getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     @RequestMapping(value = "/showEnquiry", method = RequestMethod.GET)
     public ModelAndView showForm(ModelAndView model) throws ParseException {
 
@@ -119,6 +191,7 @@ public class placeOrderController {
         // LocalDate localDate = LocalDate.now();
 
       getDetails();
+      getDetailsRaw();
 
 
         Date now = new Date();
