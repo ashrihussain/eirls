@@ -132,7 +132,7 @@ public class enquiryController {
             return "error";
         }   
    
-       String p = "Pending";
+       String p = "Out of Stock";
         
    
 

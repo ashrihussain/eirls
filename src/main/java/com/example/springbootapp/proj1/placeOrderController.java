@@ -82,11 +82,14 @@ public class placeOrderController {
                 int quantity = var.getQuantity();
                 for (orderitems itm : orderitemslist) {
 
+
                  if(var.getName().equals(itm.getProduct_name())){
+                    itm.setMaterial_order_id(var.getId());
+                    itm.setProduct_type("Finished Good");
+                    
                      if(var.getQuantity() > itm.getProduct_quantity()){
-                    itm.setAvailability("Available");
-                     itm.setMaterial_order_id(var.getId());
-                     itm.setProduct_type("Finished Good");
+                    itm.setAvailability("In Stock");
+                   
                     
 
                     System.out.println(var.getId());
@@ -144,10 +147,13 @@ public class placeOrderController {
                 for (orderitems itm : orderitemslist) {
 
                  if(var.getName().equals(itm.getProduct_name())){
+
+                    itm.setMaterial_order_id(var.getId());
+                    itm.setProduct_type("Raw Material");
+
                      if(var.getQuantity() > itm.getProduct_quantity()){
-                    itm.setAvailability("Available");
-                     itm.setMaterial_order_id(var.getId());
-                     itm.setProduct_type("Raw Material");
+                    itm.setAvailability("In Stock");
+                   
                     
 
                     System.out.println(var.getId());
@@ -310,11 +316,12 @@ public class placeOrderController {
         delrepo.save(d);
                
         enqrepo.updateItem("confirmed", deliverymodel.getOrderid());
+        ordrepo.updateStatus("confirmed", deliverymodel.getOrderid());
 
           
        
 
-        return "index";
+        return "redirect:/showOrder";
     }
 
 

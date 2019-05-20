@@ -18,9 +18,10 @@
 		<th>Client Name</th>
 		<th>Product Name</th>
 		<th>Quantity</th> --%>
-
+		<
 		<th>Placed Date</th>
 		<th>Status</th>
+		<th>Availability</th>
 		<th>Confirmation</th>
 
 		<c:forEach var="emp" items="${list}">
@@ -32,6 +33,7 @@
 
 				<td>${emp.getEnq().getDate_placed()}</td>
 				<td>${emp.getEnq().getOrder_status()}</td>
+					<td>${emp.getAvailability()}</td>
 				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getEnq().getOrder_id()}" onclick="senddata(this)" name="confirm"> Confirm </button></a> </td>
 			</tr>
 		</c:forEach>
