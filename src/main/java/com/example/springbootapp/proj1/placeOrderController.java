@@ -210,7 +210,7 @@ public class placeOrderController {
 
         enquiry enq = new enquiry();
         List<enquiry> plist = enqrepo.findPending();
-        List<orderitems> list = ordrepo.findAll();
+        List<orderitems> list = ordrepo.pendings();
 
 
         
@@ -316,12 +316,12 @@ public class placeOrderController {
         delrepo.save(d);
                
         enqrepo.updateItem("confirmed", deliverymodel.getOrderid());
-        ordrepo.updateStatus("confirmed", deliverymodel.getOrderid());
+      
 
           
        
 
-        return "redirect:/showOrder";
+        return "index";
     }
 
 
@@ -334,4 +334,16 @@ public class placeOrderController {
         return list;
     }
 
+
+
+
+    
+    @ResponseBody
+    @RequestMapping(value = "/materialOrder", method = RequestMethod.GET)
+    public List<enquiry> materialOrd(){
+
+        List<enquiry> list = enqrepo.findConfirmed();
+            
+        return list;
+    }
 }

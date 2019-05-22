@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -126,6 +127,7 @@ private String cancellation_penalty;
 
 
 	@OneToOne(mappedBy = "eq")
+	@JsonIgnore
 	private delivery del;
 
 	public delivery getDel() {

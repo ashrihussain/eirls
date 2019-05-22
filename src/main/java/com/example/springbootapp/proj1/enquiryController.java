@@ -143,7 +143,7 @@ public class enquiryController {
          ord.setProduct_name(enquiryplace.getProductname());
          ord.setProduct_quantity(enquiryplace.getQuantity());
          ord.setAvailability(p);
-         ord.setProduct_status("Pending");
+         ord.setProduct_status("Ordered");
          ord.setProduct_type(enquiryplace.getReturntype());
 
         orderitems o = ordrepo.save(ord);

@@ -18,7 +18,7 @@
 		<th>Client Name</th>
 		<%-- <th>Product Name</th> --%>
 		<%-- <th>Quantity</th> --%>
-		<th>Delivery Date</th>
+		<%-- <th>Delivery Date</th> --%>
 		<th>Placed Date</th>
 		<th>Status</th>
 		<th>Cancellation</th>
@@ -29,9 +29,9 @@
 				<td>${emp.getClient_name()}</td>
 				<%-- <td>${emp.getProduct_name()}</td> --%>
 				<%-- <td>${emp.getQuantity()}</td> --%>
-				<td>${emp.getDue_date()}</td>
+			<%-- <td>${emp.getDue_date()}</td> --%>
 				<td>${emp.getDate_placed()}</td>
-                <td>${emp.getOrder_status()}</td>
+        <td>${emp.getOrder_status()}</td>
 				<td><a href="/cancelOrder"> <button type="submit" class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="confirm"> Cancel Order </button></a> </td>
 			</tr>
 		</c:forEach>

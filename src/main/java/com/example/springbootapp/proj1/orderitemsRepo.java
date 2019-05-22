@@ -25,6 +25,9 @@ List<orderitems> findAll();
  @Query("delete orderitems e where e.enq=:#{#orderid}")
    void deleteItem(@Param("orderid") enquiry orderid);
 
+   @Query("SELECT o FROM orderitems o WHERE o.enq.order_status = 'pending'")
+   List<orderitems> pendings();
+
    
  @Transactional
  @Modifying(clearAutomatically = true)

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "courier", schema = "nCxJspI8Zf")
 public class courier{
@@ -55,7 +57,8 @@ public class courier{
 
 
 
-    @OneToMany(mappedBy = "del")
+	@OneToMany(mappedBy = "del")
+	@JsonIgnore
     private Set<delivery> del;
 
 	public Set<delivery> getDel() {
