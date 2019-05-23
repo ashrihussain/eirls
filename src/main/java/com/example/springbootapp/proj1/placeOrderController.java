@@ -21,6 +21,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -51,6 +52,7 @@ public class placeOrderController {
 
     List<Integer> newlist = new ArrayList<>();
 
+   
     private void getDetails() {
         String theUrl = "https://eirls-mm.herokuapp.com/api/items-complete";
         String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
@@ -71,7 +73,7 @@ public class placeOrderController {
             HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
             
             ResponseEntity<MaterialDetails[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity, MaterialDetails[].class);
-            List<orderitems> orderitemslist = ordrepo.findAll();
+            List<orderitems> orderitemslist = ordrepo.pendings();
 
            
 
@@ -115,6 +117,7 @@ public class placeOrderController {
         }
     }
 
+    
     private void getDetailsRaw() {
         String theUrl = "https://eirls-mm.herokuapp.com/api/items-raw";
         String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
@@ -135,7 +138,7 @@ public class placeOrderController {
             HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
             
             ResponseEntity<MaterialDetails[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity, MaterialDetails[].class);
-            List<orderitems> orderitemslist = ordrepo.findAll();
+            List<orderitems> orderitemslist = ordrepo.pendings();
 
            
 
@@ -179,7 +182,15 @@ public class placeOrderController {
         }
     }
 
+    @RequestMapping("/home")
+    public String index() {
+  
+        
+      
 
+
+        return "index";
+    }
 
 
 
@@ -191,13 +202,13 @@ public class placeOrderController {
     @RequestMapping(value = "/showEnquiry", method = RequestMethod.GET)
     public ModelAndView showForm(ModelAndView model) throws ParseException {
 
-     
+        getDetails();
+        getDetailsRaw();
 
         // DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         // LocalDate localDate = LocalDate.now();
 
-      getDetails();
-      getDetailsRaw();
+   
 
 
         Date now = new Date();

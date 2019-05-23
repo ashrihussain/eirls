@@ -20,9 +20,5 @@ public class homeController {
     @Value("${welcome.message}")
     private String message = "Hello World";
 
-    @RequestMapping("/home")
-    public String index() {
-  
-        return "index";
-    }
+   
 }
