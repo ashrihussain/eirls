@@ -118,7 +118,7 @@ public class enquiryController {
   
 
     @RequestMapping(value = "/enquiryPlace", method = RequestMethod.GET)
-    public ModelAndView showForm2() {
+    public ModelAndView productAdder() {
         return new ModelAndView("enquiryAdd", "enquiryplace", new enquiryPlace());
     }
     

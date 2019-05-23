@@ -292,7 +292,7 @@ public class placeOrderController {
 
     
     @RequestMapping(value = "/deliveryDetails", method = RequestMethod.GET)
-    public ModelAndView showForm2() {
+    public ModelAndView placeOrders() {
         return new ModelAndView("delivery", "deliverymodel", new deliveryModel());
     }
 
