@@ -47,17 +47,7 @@ public class orderitems{
     @Column(name = "product_price")
     private double product_price;
 
-	@Column(name = "availability")
-	private String availability;
-
-	public String getAvailability() {
-		return this.availability;
-	}
-
-	public void setAvailability(String availability) {
-		this.availability = availability;
-	}
-
+	
 
 	// public int getOrder_id() {
 	// 	return this.order_id;

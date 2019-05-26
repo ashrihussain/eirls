@@ -90,7 +90,7 @@ public class placeOrderController {
                     itm.setProduct_type("Finished Good");
                     
                      if(var.getQuantity() > itm.getProduct_quantity()){
-                    itm.setAvailability("In Stock");
+                  
                    
                     
 
@@ -155,7 +155,7 @@ public class placeOrderController {
                     itm.setProduct_type("Raw Material");
 
                      if(var.getQuantity() > itm.getProduct_quantity()){
-                    itm.setAvailability("In Stock");
+               
                    
                     
 
@@ -202,9 +202,7 @@ public class placeOrderController {
     @RequestMapping(value = "/showEnquiry", method = RequestMethod.GET)
     public ModelAndView showForm(ModelAndView model) throws ParseException {
 
-        getDetails();
-        getDetailsRaw();
-
+     
         // DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         // LocalDate localDate = LocalDate.now();
 
@@ -219,7 +217,7 @@ public class placeOrderController {
         int currentmonth = date.getMonth();
         long currentTime = date.getTime();
 
-        enquiry enq = new enquiry();
+        
         List<enquiry> plist = enqrepo.findPending();
         List<orderitems> list = ordrepo.pendings();
 
@@ -235,9 +233,7 @@ public class placeOrderController {
 
             System.out.println(placedTime);
 
-          //  int times = date1.getHours();
-
-         //   System.out.println(times);
+         
 
             Calendar c2 = Calendar.getInstance();
             c2.setTime(date1);
