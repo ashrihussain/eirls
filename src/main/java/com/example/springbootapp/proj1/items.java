@@ -2,42 +2,44 @@ package com.example.springbootapp.proj1;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name  = "items", schema = "nCxJspI8Zf")
+@Table(name  = "products_material", schema = "nCxJspI8Zf")
 public class items {
 
     @Id
-    @Column(name= "item_id")
-    private int itemID;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name= "product_id")
+    private int product_id;
 
-
-	public int getItemID() {
-		return this.itemID;
+	public int getProduct_id() {
+		return this.product_id;
 	}
 
-	public void setItemID(int itemID) {
-		this.itemID = itemID;
+	public void setProduct_id(int product_id) {
+		this.product_id = product_id;
 	}
-    @Column(name= "item_price")
-    private int itemprice;
-    @Column(name= "item_quantity")
-    private int itemQuantiy;
-    
-    @Column(name="item_name")
-    private String itemname;
 
-    public items() {
-    }
 
-    public items(String itemname) {
-        super();
-        this.itemname = itemname;
-   
-    }
+
+
+    @Column(name= "product_name")
+    private String product_name;
+
+	public String getProduct_name() {
+		return this.product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+  
 
   
 

@@ -23,10 +23,42 @@ public interface userRepo extends CrudRepository<clients, String> {
      clients getclient(@Param("cid") int cid);
 
 
+     @Transactional
+     @Modifying(clearAutomatically = true)
+     @Query("update clients e set e.client_name=:#{#newVal} where e.client_id=:#{#cid}")
+     void updateName(@Param("newVal") String newVal, @Param("cid") int cid);
+
+
+     @Transactional
+     @Modifying(clearAutomatically = true)
+     @Query("update clients e set e.client_trading_name=:#{#newVal} where e.client_id=:#{#cid}")
+     void updateTrading(@Param("newVal") String newVal, @Param("cid") int cid);
+
+
+     @Transactional
+     @Modifying(clearAutomatically = true)
+     @Query("update clients e set e.client_address=:#{#newVal} where e.client_id=:#{#cid}")
+     void updateAddress(@Param("newVal") String newVal, @Param("cid") int cid);
 
 
 
+ @Transactional
+     @Modifying(clearAutomatically = true)
+     @Query("update clients e set e.client_contact=:#{#newVal} where e.client_id=:#{#cid}")
+     void updateContact(@Param("newVal") String newVal, @Param("cid") int cid);
 
+     
+ @Transactional
+ @Modifying(clearAutomatically = true)
+ @Query("update clients e set e.client_status=:#{#newVal} where e.client_id=:#{#cid}")
+ void updateCredit(@Param("newVal") String newVal, @Param("cid") int cid);
+
+
+     
+ @Transactional
+ @Modifying(clearAutomatically = true)
+ @Query("update clients e set e.client_age=:#{#newVal} where e.client_id=:#{#cid}")
+ void updateAge(@Param("newVal") int newVal, @Param("cid") int cid);
 
     // update item price where itemname = black shirt
 }

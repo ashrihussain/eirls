@@ -8,23 +8,24 @@
 </head>
 <body>
   <jsp:include page="navbar.jsp"/>
-  <p> SORRY, PRODUCT UNAVAILABLE!!! </P>
+  <p> Sorry, the requested products are not available! Please reduce the quantity and try again </p>
    <form:form method="POST"
           action="/placeEnquiries" modelAttribute="enquiryplace">
              <table>
-                <tr>
-                    <td><form:label path="productname">Product Name</form:label></td>
-                    <td><form:input path="productname"/></td>
-                </tr>
+               <tr>
+               <td><form:label path = "productname">Product</form:label></td>
+               <td>
+                  <form:select path = "productname">
+                     <form:option value = "NONE" label = "Select"/>
+                     <form:options items = "${productList}" />
+                  </form:select>     	
+               </td>
+            </tr>   	  
                 <tr>
                     <td><form:label path="quantity">Quantity</form:label></td>
                     <td><form:input path="quantity"/></td>
                 </tr>
-                 <tr>
-                    <td><form:radiobutton path="returntype" value="Finished Good"/> Finished Good
-                     <form:radiobutton path="returntype" value="Raw Material"/> Raw Material 
-                      </td>
-                </tr>
+                
                 <tr>
                     <td><input type="submit" value="Submit"/></td>
                 </tr>

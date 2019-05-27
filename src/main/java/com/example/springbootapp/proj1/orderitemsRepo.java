@@ -35,4 +35,7 @@ List<orderitems> findAll();
   void updateStatus(@Param("newVal") String newVal, @Param("itemid") int itemid);
 
 
+  @Query("SELECT o FROM orderitems o WHERE o.enq.cid.client_id=:#{#userid}")
+  List<orderitems> getClientdetails(@Param("userid") int userid);
+
 }

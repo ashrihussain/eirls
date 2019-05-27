@@ -5,8 +5,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -125,6 +127,7 @@ public class enquiryController {
 
     @RequestMapping(value = "/enquiryPlace", method = RequestMethod.GET)
     public ModelAndView productAdder() {
+
         return new ModelAndView("enquiryAdd", "enquiryplace", new enquiryPlace());
     }
     
@@ -296,6 +299,26 @@ public class enquiryController {
 @RequestMapping(value = "/enquiryPlaceFailed", method = RequestMethod.GET)
 public ModelAndView productAdderfailed() {
     return new ModelAndView("enquiryFailed", "enquiryplace", new enquiryPlace());
+}
+
+
+
+@ModelAttribute("productList")
+public Map<String, String> getPorductList() {
+
+  
+  Map<String, String> productList = new HashMap<String, String>();
+ 
+ List<items> ilist = itemrepo.findAll();
+
+ for (items var : ilist) {
+
+  productList.put(var.getProduct_name(), var.getProduct_name());
+   
+ }
+
+
+   return productList;
 }
     
 }

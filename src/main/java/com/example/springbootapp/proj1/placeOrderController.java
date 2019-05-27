@@ -49,144 +49,107 @@ public class placeOrderController {
     @Autowired
     courierRepo crepo;
 
+    @Autowired
+    itemRepo irepo;
+    
+
 
     List<Integer> newlist = new ArrayList<>();
 
    
-    private void getDetails() {
-        String theUrl = "https://eirls-mm.herokuapp.com/api/items-complete";
-        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
-        RestTemplate restTemplate = new RestTemplate();
-
-
-        try {
-            // HttpHeaders headers = createHttpHeaders("fred", "1234"); //token
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.add("Authorization", "Bearer " + token);
-
-            // HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            // ResponseEntity<String> response = restTemplate.exchange(theUrl, HttpMethod.GET, entity, String.class);
-
-           
-            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            
-            ResponseEntity<MaterialDetails[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity, MaterialDetails[].class);
-            List<orderitems> orderitemslist = ordrepo.pendings();
-
-           
-
-           
-
-            MaterialDetails[] resp = respEntity.getBody();
-            for (MaterialDetails var : resp) {
-                int quantity = var.getQuantity();
-                for (orderitems itm : orderitemslist) {
-
-
-                 if(var.getName().equals(itm.getProduct_name())){
-                    itm.setMaterial_order_id(var.getId());
-                    itm.setProduct_type("Finished Good");
-                    
-                     if(var.getQuantity() > itm.getProduct_quantity()){
-                  
-                   
-                    
-
-                    System.out.println(var.getId());
-                    quantity = quantity - itm.getProduct_quantity();
-                    System.out.println(quantity);
-                    ordrepo.save(itm);
-                     }
-                }
-                   
-                }
-                
-
-             
-                
-            }
-
-
-
-            // System.out.println("Result - status (" + response.getStatusCode() + ") has body: " + response.hasBody());
-            // System.out.println(response);
-        } catch (Exception eek) {
-            System.out.println("** Exception: " + eek.getMessage());
-        }
-    }
-
-    
-    private void getDetailsRaw() {
-        String theUrl = "https://eirls-mm.herokuapp.com/api/items-raw";
-        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
-        RestTemplate restTemplate = new RestTemplate();
-
-
-        try {
-            // HttpHeaders headers = createHttpHeaders("fred", "1234"); //token
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.add("Authorization", "Bearer " + token);
-
-            // HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            // ResponseEntity<String> response = restTemplate.exchange(theUrl, HttpMethod.GET, entity, String.class);
-
-           
-            HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            
-            ResponseEntity<MaterialDetails[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity, MaterialDetails[].class);
-            List<orderitems> orderitemslist = ordrepo.pendings();
-
-           
-
-           
-
-            MaterialDetails[] resp = respEntity.getBody();
-            for (MaterialDetails var : resp) {
-                int quantity = var.getQuantity();
-                for (orderitems itm : orderitemslist) {
-
-                 if(var.getName().equals(itm.getProduct_name())){
-
-                    itm.setMaterial_order_id(var.getId());
-                    itm.setProduct_type("Raw Material");
-
-                     if(var.getQuantity() > itm.getProduct_quantity()){
-               
-                   
-                    
-
-                    System.out.println(var.getId());
-                    quantity = quantity - itm.getProduct_quantity();
-                    System.out.println(quantity);
-                    ordrepo.save(itm);
-                     }
-                }
-                   
-                }
-                
-
-             
-                
-            }
-
-
-
-            // System.out.println("Result - status (" + response.getStatusCode() + ") has body: " + response.hasBody());
-            // System.out.println(response);
-        } catch (Exception eek) {
-            System.out.println("** Exception: " + eek.getMessage());
-        }
-    }
+     
 
     @RequestMapping("/home")
     public String index() {
-  
+
+    
+    //   irepo.deleteAll();
+      
+     
+        
+    //     String theUrl = "https://eirls-mm.herokuapp.com/api/items-raw";
+    //     String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
+    //     RestTemplate restTemplate = new RestTemplate();
+      
+      
+    //     try {
+      
+    //         HttpHeaders headers = new HttpHeaders();
+    //         headers.setContentType(MediaType.APPLICATION_JSON);
+    //         headers.add("Authorization", "Bearer " + token);
+      
+         
+      
+           
+    //         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+            
+    //         ResponseEntity<MaterialDetails[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity, MaterialDetails[].class);
+     
+      
+           
+      
+           
+      
+    //         MaterialDetails[] resp = respEntity.getBody();
+    //         for (MaterialDetails var : resp) {
+                    
+                
+    //             items e  = new items();
+    //             e.setProduct_name(var.getName());
+    //             irepo.save(e);
+               
+                
+    //         }
+      
+      
+    //     } catch (Exception eek) {
+    //         System.out.println("** Exception: " + eek.getMessage());
+    //     }
+      
+      
+    //     String theUrl2 = "https://eirls-mm.herokuapp.com/api/items-complete";
+    //     String token2 = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
+    //     RestTemplate restTemplates = new RestTemplate();
+      
+      
+    //     try {
         
       
+    //         HttpHeaders headers = new HttpHeaders();
+    //         headers.setContentType(MediaType.APPLICATION_JSON);
+    //         headers.add("Authorization", "Bearer " + token2);
+      
+          
+      
+           
+    //         HttpEntity<String> entities = new HttpEntity<String>("parameters", headers);
+            
+    //         ResponseEntity<MaterialDetails[]> respEntity2 = restTemplates.exchange(theUrl2, HttpMethod.GET, entities, MaterialDetails[].class);
+           
+      
+           
+      
+           
+      
+    //         MaterialDetails[] resp = respEntity2.getBody();
+    //         for (MaterialDetails var : resp) {
+      
+    //             items S  = new items();
+          
+    //             S.setProduct_name(var.getName());
+    //             irepo.save(S);
+                
+             
+                
+    //         }
+      
+      
+    //     } catch (Exception eek) {
+    //         System.out.println("** Exception: " + eek.getMessage());
+    //     }
+      
+
+
 
 
         return "index";

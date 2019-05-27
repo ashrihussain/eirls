@@ -12,19 +12,8 @@ import org.springframework.data.repository.query.Param;
 public interface itemRepo extends CrudRepository<items, String> {
 
     List<items> findAll();
-    List<items> findByItemname(String itemname);
-    List<items> findDistinctItempriceByItemname(String Itemname);
-    
-
-    @Query("Select i.itemname from items i")
-    List<items> itemNames();
 
     
-
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query("Update items i set i.itemprice=:#{#newVal} where i.itemname=:#{#itemName}")
-    void updateItem(@Param("newVal") int newVal, @Param("itemName") String itemname);
 
 
 

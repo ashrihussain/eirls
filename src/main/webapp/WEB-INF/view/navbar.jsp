@@ -95,11 +95,10 @@
     
  <div class="space"></div>
   <div class="dropdown">
-  <button class="dropbtn">Settings</button>
+  <button class="dropbtn">Client Settings</button>
   <div class="dropdown-content">
-    <a>Account settings</a>
-    <a>Messages</a>
-    <a>Logout</a>
+    <a href="/registerClient">Register Client</a>
+    <a href="/manageAccount">Manage Clients</a>
     </div>
     </div>
          

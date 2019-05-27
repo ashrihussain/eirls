@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -8,29 +9,29 @@
 </head>
 <body>
   <jsp:include page="navbar.jsp"/>
-   <form:form method="POST"
-          action="/placeEnquiries" modelAttribute="enquiryplace">
-             <table>
+
+
+
+
+<p> Enter details to place enquiry</p>
+<form:form method="POST"
+          action="/clientShowHistory" modelAttribute="clientmodel">
+<table>
                <tr>
-               <td><form:label path = "productname">Product</form:label></td>
+               <td><form:label path = "id">Select Client ID</form:label></td>
                <td>
-                  <form:select path = "productname">
+                  <form:select path = "id">
                      <form:option value = "NONE" label = "Select"/>
-                     <form:options items = "${productList}" />
+                     <form:options items = "${userList}" />
                   </form:select>     	
                </td>
             </tr>   	  
-                <tr>
-                    <td><form:label path="quantity">Quantity</form:label></td>
-                    <td><form:input path="quantity"/></td>
-                </tr>
-                
+                  
                 <tr>
                     <td><input type="submit" value="Submit"/></td>
                 </tr>
             </table>
         </form:form>
 
-        <button> <a href="/enquiry">Continue</a> </button>
 </body>
 </html>

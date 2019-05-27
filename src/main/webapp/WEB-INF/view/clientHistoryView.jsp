@@ -10,15 +10,13 @@
 <body>
   <jsp:include page="navbar.jsp"/>
 
-<form action="/cancelOrder" method="post">
- <input type="hidden" name="myField" id="myField" value="" />
 <table border="2">
 
 		<th>Order Number</th>
 		<th>Client Name</th>
 		<th>Product Name</th>
-		<th>Quantity</th> --%>
-		<
+		<th>Quantity</th> 
+		
 		<th>Placed Date</th>
 		<th>Status</th>
 		<th>Availability</th>
@@ -34,22 +32,11 @@
 				<td>${emp.getEnq().getDate_placed()}</td>
 				<td>${emp.getEnq().getOrder_status()}</td>
 				
-				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getEnq().getOrder_id()}" onclick="senddata(this)" name="cancel"> Cancel </button></a> </td>
+			
 			</tr>
 		</c:forEach>
 	</table>
 	</form>
-	 <script>
-          function senddata(e){
-              
-             document.getElementById('myField').value= e.value; 
-              
-              
-          }
-          
-          
-          
-          
-          </script>
+	
 </body>
 </html>

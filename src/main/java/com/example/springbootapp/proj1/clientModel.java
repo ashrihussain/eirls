@@ -3,12 +3,26 @@ package com.example.springbootapp.proj1;
 
 public class clientModel{
 
+	private String id;
+
+	public String getId() {
+		return this.id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+
 private String name;
 private String tradingname;
 private int age;
 private String address;
 private String contact;
 private String status;
+
 
 
 
