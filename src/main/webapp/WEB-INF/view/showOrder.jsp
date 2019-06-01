@@ -123,7 +123,7 @@ th {
 		<th>Client Name</th>
 	
 		<th>Placed Date</th>
-		<th>Status</th>
+		
 		<th>Cancellation</th>
 
 		<c:forEach var="emp" items="${list}">
@@ -132,7 +132,7 @@ th {
 				<td>${emp.getClient_name()}</td>
 			
 				<td>${emp.getDate_placed()}</td>
-        <td>${emp.getOrder_status()}</td>
+       
 				<td><a href="/cancelOrder"> <button type="submit" class="button" value="${emp.getOrder_id()}" onclick="senddata(this)" name="cancel"> Cancel Order </button></a> </td>
 			</tr>
 		</c:forEach>
