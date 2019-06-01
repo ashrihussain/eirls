@@ -131,5 +131,16 @@ public class orderitems{
 	}
 
 
+	@Column(name = "cancellation_penalty")
+	private String cancellation_penalty;
+	
+		public String getCancellation_penalty() {
+			return this.cancellation_penalty;
+		}
+	
+		public void setCancellation_penalty(String cancellation_penalty) {
+			this.cancellation_penalty = cancellation_penalty;
+		}
+	
 
 }
