@@ -67,6 +67,11 @@
 .space{ 
     width:900px;
     display:inline-block;
+
+
+
+
+
 }
     </style>
     
@@ -99,6 +104,7 @@
   <div class="dropdown-content">
     <a href="/registerClient">Register Client</a>
     <a href="/manageAccount">Manage Clients</a>
+     <a href="/clientHistory">View Client History</a>
     </div>
     </div>
          

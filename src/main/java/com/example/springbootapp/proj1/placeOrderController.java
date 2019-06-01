@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletRequest;
 import javax.validation.Valid;
@@ -274,8 +276,8 @@ public class placeOrderController {
         }
 
         delivery d = new delivery();
-        enquiry eq = enqrepo.getEnquiry(deliverymodel.getOrderid());
-        courier cr = crepo.getCourier(deliverymodel.getCourierid());
+        enquiry eq = enqrepo.getEnquiry(Integer.parseInt(deliverymodel.getIdentity()));
+        courier cr = crepo.getCourier(Integer.parseInt(deliverymodel.getCourier()));
 
 
         d.setDelivery_date(deliverymodel.getDuedate());
@@ -285,7 +287,7 @@ public class placeOrderController {
         d.setDel(cr);
         delrepo.save(d);
                
-        enqrepo.updateItem("confirmed", deliverymodel.getOrderid());
+        enqrepo.updateItem("confirmed", Integer.parseInt(deliverymodel.getIdentity()));
       
 
           
@@ -316,4 +318,43 @@ public class placeOrderController {
             
         return list;
     }
+
+
+
+    
+    @ModelAttribute("orderList")
+    public Map<String, String> getOrderList() {
+    
+      
+      Map<String, String> orderList = new HashMap<String, String>();
+     
+     List<enquiry> ilist = enqrepo.findPending();
+    
+     for (enquiry var : ilist) {
+    
+        orderList.put(String.valueOf(var.getOrder_id()), String.valueOf(var.getOrder_id()));
+       
+     }
+    
+    return orderList;
+    }
+
+    @ModelAttribute("courierList")
+    public Map<String, String> getCourier() {
+    
+      
+      Map<String, String> courierList = new HashMap<String, String>();
+     
+     List<courier> ilist = crepo.findAll();
+    
+     for (courier var : ilist) {
+    
+        courierList.put(String.valueOf(var.getCourier_id()), String.valueOf(var.getCourier_id()));
+       
+     }
+    
+    return courierList;
+    }
+
+
 }

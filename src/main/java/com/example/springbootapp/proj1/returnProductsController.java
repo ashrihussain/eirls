@@ -1,7 +1,10 @@
 package com.example.springbootapp.proj1;
 
 import java.text.ParseException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -23,9 +26,23 @@ public class returnProductsController{
     @Autowired
     enquiryRepo enqrepo;
 
+    @Autowired
+    returnsRepo rerepo;
+
+    @Autowired
+    itemRepo itemrepo;
+
     @RequestMapping(value = "/returnItems", method = RequestMethod.GET)
     public ModelAndView showForm() {
         return new ModelAndView("returnItemsOne", "enquiryplace", new enquiryPlace());
+
+
+    }
+
+
+    @RequestMapping(value = "/returnItemsError", method = RequestMethod.GET)
+    public ModelAndView showForm2() {
+        return new ModelAndView("returnItemsError", "enquiryplace", new enquiryPlace());
 
 
     }
@@ -41,35 +58,81 @@ public class returnProductsController{
                 return "error";
             }   
 
-            int getid = enquiryplace.getOrderid();
-       
-            List<orderitems> orderlist = ordrep.findAll();
-            
-            for (orderitems var : orderlist) {
+            Date now = new Date();
 
-                if(enquiryplace.getOrderid() == var.getEnq().getOrder_id()){
+           int orderid = Integer.parseInt(enquiryplace.getIdentity());
 
-                    if(enquiryplace.getId() == var.getOrderitems_id()){
+           List<orderitems> orditemsList = ordrep.getItems(orderid);
+           enquiry e = enqrepo.getEnquiry(orderid);
+          returns rtn = new returns();
 
-                        ordrep.updateStatus(enquiryplace.getReturntype(), enquiryplace.getId());
+           for (orderitems var : orditemsList) {
+               if(var.getProduct_name().equals(enquiryplace.getProductname())){
+                    if(var.getProduct_quantity() > enquiryplace.getQuantity()){
 
-                        
+                        rtn.setProduct_name(enquiryplace.getProductname());
+                        rtn.setOrderid(e);
+                        rtn.setProduct_quantity(enquiryplace.getQuantity());
+                        rtn.setDescription(enquiryplace.getDescription());
+                        rtn.setReturn_location(enquiryplace.getLocation());
+                        rtn.setReturn_type(enquiryplace.getReturntype());
+                        rtn.setReturn_date(now);
+
+                        rerepo.save(rtn);
+
+                      
+
+                        return "index";
+
                     }
 
+               }
+           }
 
-                }
-                
-            }
 
-           
-            
-        
             
            
  
        
 
-        return "index";
+           return "redirect:/returnItemsError";
     }
+
+
+
+    @ModelAttribute("orderList")
+    public Map<String, String> getOrderList() {
+    
+      
+      Map<String, String> orderList = new HashMap<String, String>();
+     
+     List<enquiry> ilist = enqrepo.findConfirmed();
+    
+     for (enquiry var : ilist) {
+    
+        orderList.put(String.valueOf(var.getOrder_id()), String.valueOf(var.getOrder_id()));
+       
+     }
+    
+    return orderList;
+    }
+
+    @ModelAttribute("productList")
+public Map<String, String> getPorductList() {
+
+  
+  Map<String, String> productList = new HashMap<String, String>();
+ 
+ List<items> ilist = itemrepo.findAll();
+
+ for (items var : ilist) {
+
+  productList.put(var.getProduct_name(), var.getProduct_name());
+   
+ }
+
+
+   return productList;
+}
 
 }

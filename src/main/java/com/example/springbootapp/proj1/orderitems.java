@@ -94,17 +94,7 @@ public class orderitems{
 		this.enq = enq;
 	}
 
-	@Column(name = "product_status")
-	private String product_status;
-
-	public String getProduct_status() {
-		return this.product_status;
-	}
-
-	public void setProduct_status(String product_status) {
-		this.product_status = product_status;
-	}
-
+	
 	@Column(name = "material_order_id")
 	private Integer material_order_id;
 
@@ -129,6 +119,16 @@ public class orderitems{
 	}
 
 
+	@Column(name = "product_status")
+	private String product_status;
+
+	public String getProduct_status() {
+		return this.product_status;
+	}
+
+	public void setProduct_status(String product_status) {
+		this.product_status = product_status;
+	}
 
 
 

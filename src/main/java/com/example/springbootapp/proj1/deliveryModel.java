@@ -10,7 +10,29 @@ public class deliveryModel {
 
     private String duedate;
 
-    private String deliverytype;
+	private String deliverytype;
+	
+	private String identity;
+
+	private String courier;
+
+	public String getCourier() {
+		return this.courier;
+	}
+
+	public void setCourier(String courier) {
+		this.courier = courier;
+	}
+
+
+	public String getIdentity() {
+		return this.identity;
+	}
+
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
+
 
 	public int getOrderid() {
 		return this.orderid;

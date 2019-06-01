@@ -28,11 +28,10 @@ List<orderitems> findAll();
    @Query("SELECT o FROM orderitems o WHERE o.enq.order_status = 'pending'")
    List<orderitems> pendings();
 
+   @Query("SELECT o FROM orderitems o WHERE o.enq.order_id=:#{#oid}")
+   List<orderitems> getItems(@Param("oid") int oid);
    
- @Transactional
- @Modifying(clearAutomatically = true)
-  @Query("Update orderitems i set i.product_status=:#{#newVal} where i.orderitems_id=:#{#itemid}")
-  void updateStatus(@Param("newVal") String newVal, @Param("itemid") int itemid);
+ 
 
 
   @Query("SELECT o FROM orderitems o WHERE o.enq.cid.client_id=:#{#userid}")

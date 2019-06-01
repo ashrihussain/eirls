@@ -23,6 +23,19 @@ public class enquiryPlace{
 	}
 
 
+	private String identity;
+
+
+	public String getIdentity() {
+		return this.identity;
+	}
+
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
+
+
+
 
     private int quantity;
 
@@ -85,6 +98,17 @@ public class enquiryPlace{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	private String location;
+
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 
 
 

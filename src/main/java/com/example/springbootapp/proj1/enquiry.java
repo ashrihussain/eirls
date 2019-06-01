@@ -140,10 +140,30 @@ private String cancellation_penalty;
 
 
 
+	@OneToMany(mappedBy = "orderid")
+	@JsonIgnoreProperties("orderid")
+  private Set<returns> returns;
+
+	public Set<returns> getReturns() {
+		return this.returns;
+	}
+
+	public void setReturns(Set<returns> returns) {
+		this.returns = returns;
+	}
 
 
+@Column(name ="due_date")
+private String due_date;
 
 
+	public String getDue_date() {
+		return this.due_date;
+	}
+
+	public void setDue_date(String due_date) {
+		this.due_date = due_date;
+	}
 
 
 

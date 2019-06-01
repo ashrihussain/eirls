@@ -25,7 +25,15 @@
    
 }
 
-
+button{
+    margin-top:10px; 
+   background-color: plum;
+  color: white;
+  padding: 10px 10px;
+  text-align: center; 
+  text-decoration: none;
+  display: inline-block;
+}
 
 button:hover{
      background-color:plum;
@@ -48,6 +56,7 @@ button:hover{
   <jsp:include page="navbar.jsp"/>
    <div class="layout">
             <div class="main">
+  <p> Invalid details entered, please try again </p>
  <form:form method="POST"
           action="/returns" modelAttribute="enquiryplace">
              <table>
@@ -60,7 +69,7 @@ button:hover{
                   </form:select>     	
                </td>
             </tr>   	  
-                 <tr>
+               <tr>
                <td><form:label path = "productname">Product</form:label></td>
                <td>
                   <form:select path = "productname">
