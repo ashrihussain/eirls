@@ -94,7 +94,9 @@
   <div class="dropdown-content">
    <a href="/deliveryDetails">Confirm Order</a>
     <a href="/showOrder">Show Orders</a>
+    <a href="/selectOrder">Show Order Items</a>
     <a href="/returnItems">Return Products</a>
+    <a href="/cancelledOrders">Cancelled Orders</a>
     </div>
     </div>
     

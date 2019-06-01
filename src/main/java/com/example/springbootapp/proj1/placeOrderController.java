@@ -153,11 +153,28 @@ public class placeOrderController {
     @RequestMapping(value = "/cancelOrder", method = RequestMethod.POST)
     public String developerMethodcancel(@RequestParam("myField") int id) {
 
-        enqrepo.deleteItem(id);
+        List<orderitems> olist = ordrepo.getItems(id);
+
+        for (orderitems var : olist) {
+            ordrepo.cancelItem("cancelled", var.getOrderitems_id());
+            
+        }
+
+        enqrepo.updateItem("cancelled", id);
 
         return "redirect:/showOrder";
 
     }
+
+    @RequestMapping(value = "/cancelOrderItem", method = RequestMethod.POST)
+    public String cancelItem(@RequestParam("myField") int id) {
+
+        ordrepo.cancelItem("cancelled", id);
+
+        return "redirect:/selectOrder";
+
+    }
+
 
     @RequestMapping(value = "/showOrder", method = RequestMethod.GET)
     public ModelAndView showForm2(ModelAndView model) throws ParseException {
@@ -169,6 +186,46 @@ public class placeOrderController {
         model.setViewName("showOrder");
 
         return model;
+    }
+
+
+    @RequestMapping(value = "/cancelledOrders", method = RequestMethod.GET)
+    public ModelAndView showCancelled(ModelAndView model) throws ParseException {
+
+     
+        List<orderitems> list = ordrepo.cancelledOrders();
+
+        model.addObject("list", list);
+        model.setViewName("cancelledOrders");
+
+        return model;
+    }
+
+
+
+
+    @RequestMapping(value = "/selectOrder", method = RequestMethod.GET)
+    public ModelAndView historyForm() {
+        return new ModelAndView("selectOrderItem", "deliverymodel", new deliveryModel());
+    }
+
+    @RequestMapping(value = "/showOrderItems", method = RequestMethod.POST)
+    public ModelAndView showHistory(@Valid @ModelAttribute("deliverymodel")deliveryModel deliverymodel, 
+      BindingResult result, ModelMap models, ModelAndView model) {
+      
+        int results = Integer.parseInt(deliverymodel.getIdentity());
+       
+        List<orderitems> list = ordrepo.getItems(results);
+        model.addObject("list", list);
+        model.setViewName("showOrderItems");
+
+        return model;
+      
+
+          
+       
+
+       
     }
 
 
@@ -216,9 +273,6 @@ public class placeOrderController {
         return list;
     }
 
-
-
-
     
     @ResponseBody
     @RequestMapping(value = "/materialOrder", method = RequestMethod.GET)
@@ -230,6 +284,32 @@ public class placeOrderController {
     }
 
 
+    @ModelAttribute("confirmedOrderList")
+    public Map<String, String> getConfirmedOrderList() {
+    
+      
+      Map<String, String> orderList = new HashMap<String, String>();
+     
+     List<orderitems> ilist = ordrepo.confirmedOrders();
+    
+     for (orderitems var : ilist) {
+
+        if(var.getProduct_status().equals("cancelled")){
+
+        }else{
+
+            orderList.put(String.valueOf(var.getEnq().getOrder_id()), String.valueOf(var.getEnq().getOrder_id()));
+        }
+
+
+        
+        
+      
+       
+     }
+    
+    return orderList;
+    }
 
     
     @ModelAttribute("orderList")
