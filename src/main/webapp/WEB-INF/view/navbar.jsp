@@ -97,6 +97,7 @@
     <a href="/selectOrder">Show Order Items</a>
     <a href="/returnItems">Return Products</a>
     <a href="/cancelledOrders">Cancelled Orders</a>
+    <a href="/viewReturns">Show returned products</a>
     </div>
     </div>
     

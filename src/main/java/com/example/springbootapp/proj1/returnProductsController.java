@@ -1,6 +1,8 @@
 package com.example.springbootapp.proj1;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +60,7 @@ public class returnProductsController{
                 return "error";
             }   
 
-            Date now = new Date();
+            Date now = getDate();
 
            int orderid = Integer.parseInt(enquiryplace.getIdentity());
 
@@ -99,6 +101,22 @@ public class returnProductsController{
     }
 
 
+    @RequestMapping(value = "/viewReturns", method = RequestMethod.GET)
+    public ModelAndView showForm2(ModelAndView model) throws ParseException {
+
+       
+        List<returns> list = rerepo.findAll();
+
+        model.addObject("list", list);
+        model.setViewName("viewReturns");
+
+        return model;
+    }
+    
+
+
+
+
 
     @ModelAttribute("orderList")
     public Map<String, String> getOrderList() {
@@ -134,5 +152,24 @@ public Map<String, String> getPorductList() {
 
    return productList;
 }
+
+private Date getDate() {
+
+    Date date = new Date();
+
+    DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+    // df.setTimeZone(TimeZone.getTimeZone("Asia/Colombo"));
+
+    String strDate = df.format(date);
+
+    Date newDate = null;
+    try {
+      newDate = df.parse(strDate);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+
+    return newDate;
+  }
 
 }
