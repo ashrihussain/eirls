@@ -1,5 +1,6 @@
 package com.example.springbootapp.proj1;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -65,91 +66,6 @@ public class placeOrderController {
     public String index() {
 
     
-    //   irepo.deleteAll();
-      
-     
-        
-    //     String theUrl = "https://eirls-mm.herokuapp.com/api/items-raw";
-    //     String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
-    //     RestTemplate restTemplate = new RestTemplate();
-      
-      
-    //     try {
-      
-    //         HttpHeaders headers = new HttpHeaders();
-    //         headers.setContentType(MediaType.APPLICATION_JSON);
-    //         headers.add("Authorization", "Bearer " + token);
-      
-         
-      
-           
-    //         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-            
-    //         ResponseEntity<MaterialDetails[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity, MaterialDetails[].class);
-     
-      
-           
-      
-           
-      
-    //         MaterialDetails[] resp = respEntity.getBody();
-    //         for (MaterialDetails var : resp) {
-                    
-                
-    //             items e  = new items();
-    //             e.setProduct_name(var.getName());
-    //             irepo.save(e);
-               
-                
-    //         }
-      
-      
-    //     } catch (Exception eek) {
-    //         System.out.println("** Exception: " + eek.getMessage());
-    //     }
-      
-      
-    //     String theUrl2 = "https://eirls-mm.herokuapp.com/api/items-complete";
-    //     String token2 = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
-    //     RestTemplate restTemplates = new RestTemplate();
-      
-      
-    //     try {
-        
-      
-    //         HttpHeaders headers = new HttpHeaders();
-    //         headers.setContentType(MediaType.APPLICATION_JSON);
-    //         headers.add("Authorization", "Bearer " + token2);
-      
-          
-      
-           
-    //         HttpEntity<String> entities = new HttpEntity<String>("parameters", headers);
-            
-    //         ResponseEntity<MaterialDetails[]> respEntity2 = restTemplates.exchange(theUrl2, HttpMethod.GET, entities, MaterialDetails[].class);
-           
-      
-           
-      
-           
-      
-    //         MaterialDetails[] resp = respEntity2.getBody();
-    //         for (MaterialDetails var : resp) {
-      
-    //             items S  = new items();
-          
-    //             S.setProduct_name(var.getName());
-    //             irepo.save(S);
-                
-             
-                
-    //         }
-      
-      
-    //     } catch (Exception eek) {
-    //         System.out.println("** Exception: " + eek.getMessage());
-    //     }
-      
 
 
 
@@ -174,13 +90,13 @@ public class placeOrderController {
    
 
 
-        Date now = new Date();
+        Date now = getDate();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(now);
         int currentdate = calendar.get(Calendar.DAY_OF_MONTH);
-        Date date = new Date();
-        int currentmonth = date.getMonth();
-        long currentTime = date.getTime();
+        
+        int currentmonth = now.getMonth();
+        long currentTime = now.getTime();
 
         
         List<enquiry> plist = enqrepo.findPending();
@@ -208,14 +124,14 @@ public class placeOrderController {
             if (currentdate > placeddate) {
 
                 enqrepo.deleteItem(e.getOrder_id());
-                ordrepo.deleteItem(e);
+               
 
             }
 
             if (currentmonth > placedmonth) {
 
                 enqrepo.deleteItem(e.getOrder_id());
-                ordrepo.deleteItem(e);
+               
             }
 
         
@@ -356,5 +272,23 @@ public class placeOrderController {
     return courierList;
     }
 
+    private Date getDate() {
+
+        Date date = new Date();
+    
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        // df.setTimeZone(TimeZone.getTimeZone("Asia/Colombo"));
+    
+        String strDate = df.format(date);
+    
+        Date newDate = null;
+        try {
+          newDate = df.parse(strDate);
+        } catch (ParseException e) {
+          e.printStackTrace();
+        }
+    
+        return newDate;
+      }
 
 }

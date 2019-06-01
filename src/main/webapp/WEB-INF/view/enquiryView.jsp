@@ -71,10 +71,14 @@ button:hover{
                      <form:options items = "${userList}" />
                   </form:select>     	
                </td>
-            </tr>   	 
-              <tr>
+            </tr>   
+            <tr>
                     <td><form:label path="address">Due Date</form:label></td>
                     <td><form:input path="address"/></td>
+                </tr> 	 
+              <tr>
+                    <td><form:label path="tradingname">Client Order ID (OPTIONAL)</form:label></td>
+                    <td><form:input path="tradingname"/></td>
                 </tr> 
                 <tr>
                     <td><input type="submit" value="Submit"/></td>

@@ -89,6 +89,7 @@ public class enquiryController {
     enq.setDate_placed(now);
     enq.setClient_name(c.getClient_name());
     enq.setDue_date(clientmodel.getAddress());
+    enq.setClient_order_id(clientmodel.getTradingname());
 
     enq.setOrder_status(s);
 
