@@ -120,8 +120,7 @@ th {
 		
 		<th>Placed Date</th>
 		<th>Status</th>
-		<th>Availability</th>
-		<th>Confirmation</th>
+
 
 		<c:forEach var="emp" items="${list}">
 			<tr>

@@ -121,20 +121,14 @@ public class placeOrderController {
             int placeddate = c2.get(Calendar.DAY_OF_MONTH);
 
 
-            if (currentdate > placeddate) {
+            long diff = now.getTime() - date1.getTime();
 
-                enqrepo.deleteItem(e.getOrder_id());
-               
+            long diffDays = diff / (24 * 60 * 60 * 1000);
+            long diffHours = diff / (60 * 60 * 1000) % 24;
 
-            }
+            System.out.println(diffHours);
 
-            if (currentmonth > placedmonth) {
-
-                enqrepo.deleteItem(e.getOrder_id());
-               
-            }
-
-        
+            System.out.println(diffDays);
 
         }
 
