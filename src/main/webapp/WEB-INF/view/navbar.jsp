@@ -100,6 +100,8 @@
     <a href="/viewReturns">Show returned products</a>
     </div>
     </div>
+
+    <a href="/showDelivery">    <button class="dropbtn"> Deliveries </button></a> 
     
  <div class="space"></div>
   <div class="dropdown">

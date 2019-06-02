@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,6 +34,9 @@ public class returnProductsController{
 
     @Autowired
     itemRepo itemrepo;
+
+    @Autowired
+    deliveryRepo delrepo;
 
     @RequestMapping(value = "/returnItems", method = RequestMethod.GET)
     public ModelAndView showForm() {
@@ -172,4 +176,26 @@ private Date getDate() {
     return newDate;
   }
 
+
+
+  
+  @ResponseBody
+  @RequestMapping(value = "/productionOrders", method = RequestMethod.GET)
+  public List<orderitems> productionOrders(){
+
+      List<orderitems> list = ordrep.getProduction();
+          
+      return list;
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/deliveryNotes", method = RequestMethod.GET)
+  public List<delivery> deliveryNotes(){
+
+      List<delivery> list = delrepo.findAll();
+          
+      return list;
+  }
+
+  
 }

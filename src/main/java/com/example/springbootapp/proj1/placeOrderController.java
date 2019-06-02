@@ -280,14 +280,28 @@ public class placeOrderController {
 
         delivery d = new delivery();
         enquiry eq = enqrepo.getEnquiry(Integer.parseInt(deliverymodel.getIdentity()));
-        courier cr = crepo.getCourier(Integer.parseInt(deliverymodel.getCourier()));
+      
 
 
         d.setDelivery_date(deliverymodel.getDuedate());
         d.setDelivery_location(deliverymodel.getAddress());
         d.setDelivery_type(deliverymodel.getDeliverytype());
         d.setEq(eq);
-        d.setDel(cr);
+
+        int i = Integer.parseInt(deliverymodel.getCourier());
+
+if(i == 0){
+
+    
+}else{
+    courier cr = crepo.getCourier(Integer.parseInt(deliverymodel.getCourier()));
+    d.setDel(cr);
+}
+
+        
+        
+        
+        d.setDelivery_status("pending");
         delrepo.save(d);
                
         enqrepo.updateItem("confirmed", Integer.parseInt(deliverymodel.getIdentity()));
@@ -299,6 +313,18 @@ public class placeOrderController {
         return "index";
     }
 
+
+    @RequestMapping(value = "/showDelivery", method = RequestMethod.GET)
+    public ModelAndView showDelivery(ModelAndView model) throws ParseException {
+
+      
+        List<delivery> list = delrepo.findAll();
+
+        model.addObject("list", list);
+        model.setViewName("showDelivery");
+
+        return model;
+    }
 
     @ResponseBody
     @RequestMapping(value = "/materialEnquiry", method = RequestMethod.GET)

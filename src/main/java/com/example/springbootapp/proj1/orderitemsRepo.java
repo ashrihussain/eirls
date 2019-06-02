@@ -35,6 +35,10 @@ List<orderitems> findAll();
    @Query("SELECT o FROM orderitems o WHERE o.product_status = 'cancelled'")
    List<orderitems> cancelledOrders();
 
+   @Query("SELECT o FROM orderitems o WHERE o.product_status = 'Production'")
+   List<orderitems> getProduction();
+
+
    @Query("SELECT o FROM orderitems o WHERE o.enq.order_id=:#{#oid}")
    List<orderitems> getItems(@Param("oid") int oid);
 

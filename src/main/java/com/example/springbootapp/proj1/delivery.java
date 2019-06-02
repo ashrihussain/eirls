@@ -90,6 +90,17 @@ public class delivery{
 		this.del = del;
 	}
 
+	@Column(name = "delivery_status")
+	private String delivery_status;
+
+	public String getDelivery_status() {
+		return this.delivery_status;
+	}
+
+	public void setDelivery_status(String delivery_status) {
+		this.delivery_status = delivery_status;
+	}
+
 
 
 
