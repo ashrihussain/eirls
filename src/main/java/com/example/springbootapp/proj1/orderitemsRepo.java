@@ -37,6 +37,10 @@ List<orderitems> findAll();
 
    @Query("SELECT o FROM orderitems o WHERE o.enq.order_id=:#{#oid}")
    List<orderitems> getItems(@Param("oid") int oid);
+
+   
+   @Query("SELECT o FROM orderitems o WHERE o.orderitems_id=:#{#oid}")
+   orderitems getOrderItem(@Param("oid") int oid);
    
   
    

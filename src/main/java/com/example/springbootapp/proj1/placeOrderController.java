@@ -170,10 +170,15 @@ public class placeOrderController {
     public String cancelEnquiry(@RequestParam("myField") int id) {
 
 
+      
+
+
         ordrepo.cancelItem("cancelled", id);
 
+        orderitems o = ordrepo.getOrderItem(id);
+
         ArrayList<String> str = new ArrayList<>();
-        List<orderitems> ord = ordrepo.getItems(id);
+        List<orderitems> ord = ordrepo.getItems(o.getEnq().getOrder_id());
         boolean allMatch = true;
        
       for (orderitems var : ord) {
@@ -188,14 +193,17 @@ public class placeOrderController {
             break;
         }
 
-        if(allMatch == true){
+           
 
-            enqrepo.deleteItem(id);
-    
-          }
- 
+        
+
     }
 
+    if(allMatch == true){
+        
+        enqrepo.deleteItem(o.getEnq().getOrder_id());
+
+    }
       
        
 

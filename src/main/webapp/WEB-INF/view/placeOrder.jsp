@@ -133,7 +133,7 @@ th {
 				<td>${emp.getEnq().getDate_placed()}</td>
 				<td>${emp.getProduct_status()}</td>
 				
-				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getEnq().getOrder_id()}" onclick="senddata(this)" name="cancel"> Cancel </button></a> </td>
+				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getOrderitems_id()}" onclick="senddata(this)" name="cancel"> Cancel </button></a> </td>
 			</tr>
 		</c:forEach>
 	</table>
