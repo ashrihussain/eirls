@@ -181,9 +181,9 @@ private Date getDate() {
   
   @ResponseBody
   @RequestMapping(value = "/productionOrders", method = RequestMethod.GET)
-  public List<orderitems> productionOrders(){
+  public List<enquiry> productionOrders(){
 
-      List<orderitems> list = ordrep.getProduction();
+      List<enquiry> list = enqrepo.findAll();
           
       return list;
   }

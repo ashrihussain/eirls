@@ -74,7 +74,7 @@ button:hover{
                 
                  
                 <tr>
-                    <td><form:radiobutton path="deliverytype" value="Shipping"/> Shipping
+                    <td><form:radiobutton path="deliverytype" value="Post"/> Post
                      <form:radiobutton path="deliverytype" value="Courier"/> Courier 
                      </td>
                 </tr>
