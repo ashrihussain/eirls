@@ -91,12 +91,7 @@ public class placeOrderController {
 
 
         Date now = getDate();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(now);
-        int currentdate = calendar.get(Calendar.DAY_OF_MONTH);
         
-        int currentmonth = now.getMonth();
-        long currentTime = now.getTime();
 
         
         List<enquiry> plist = enqrepo.findPending();
@@ -108,27 +103,22 @@ public class placeOrderController {
         for (enquiry e : plist) {
 
             Date date1 = e.getDate_placed();
-            int placedmonth = date1.getMonth();
-
-            long placedTime = date1.getTime();
-
-            System.out.println(placedTime);
-
-         
-
-            Calendar c2 = Calendar.getInstance();
-            c2.setTime(date1);
-            int placeddate = c2.get(Calendar.DAY_OF_MONTH);
+          
 
 
             long diff = now.getTime() - date1.getTime();
 
             long diffDays = diff / (24 * 60 * 60 * 1000);
             long diffHours = diff / (60 * 60 * 1000) % 24;
+            long diffMinutes = diff / (60 * 1000);
+
+            System.out.println(diffMinutes);
 
             System.out.println(diffHours);
 
             System.out.println(diffDays);
+
+            
 
         }
 
@@ -172,6 +162,44 @@ public class placeOrderController {
         ordrepo.cancelItem("cancelled", id);
 
         return "redirect:/selectOrder";
+
+    }
+
+
+    @RequestMapping(value = "/cancelEnquiry", method = RequestMethod.POST)
+    public String cancelEnquiry(@RequestParam("myField") int id) {
+
+
+        ordrepo.cancelItem("cancelled", id);
+
+        ArrayList<String> str = new ArrayList<>();
+        List<orderitems> ord = ordrepo.getItems(id);
+        boolean allMatch = true;
+       
+      for (orderitems var : ord) {
+
+        str.add(var.getProduct_status());
+          
+      }
+
+      for (String string : str) {
+        if (!string.equals("cancelled")) {
+            allMatch = false;
+            break;
+        }
+
+        if(allMatch == true){
+
+            enqrepo.deleteItem(id);
+    
+          }
+ 
+    }
+
+      
+       
+
+        return "redirect:/showEnquiry";
 
     }
 

@@ -111,7 +111,7 @@ th {
 <body>
   <jsp:include page="navbar.jsp"/>
  <div class="flow">
-<form action="/cancelOrder" method="post">
+<form action="/cancelEnquiry" method="post">
  <input type="hidden" name="myField" id="myField" value="" />
 <table border="2">
 
@@ -131,7 +131,7 @@ th {
 				<td>${emp.getProduct_quantity()}</td> 
 
 				<td>${emp.getEnq().getDate_placed()}</td>
-				<td>${emp.getEnq().getOrder_status()}</td>
+				<td>${emp.getProduct_status()}</td>
 				
 				<td><a href="/confirmOrder"> <button type="submit" class="button" value="${emp.getEnq().getOrder_id()}" onclick="senddata(this)" name="cancel"> Cancel </button></a> </td>
 			</tr>
