@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -105,7 +106,8 @@ public class returns{
 		this.orderid = orderid;
 	}
 
-    @Column(name = "return_date")
+	@Column(name = "return_date")
+	@JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss", timezone = "Asia/Colombo")
     private Date return_date;
 
 	public Date getReturn_date() {

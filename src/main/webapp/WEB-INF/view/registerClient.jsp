@@ -79,9 +79,10 @@ button:hover{
                     <td><form:label path="contact">Client Contact Number</form:label></td>
                     <td><form:input path="contact"/></td>
                 </tr>
-                 <tr>
-                    <td><form:label path="status">Client Credit Status</form:label></td>
-                    <td><form:input path="status"/></td>
+                <tr>
+                    <td><form:radiobutton path="status" value="Valid"/> Valid
+                     <form:radiobutton path="status" value="Invalid"/> Invalid 
+                    </td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Submit"/></td>

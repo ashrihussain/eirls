@@ -215,7 +215,7 @@ public class placeOrderController {
     @RequestMapping(value = "/showOrder", method = RequestMethod.GET)
     public ModelAndView showForm2(ModelAndView model) throws ParseException {
 
-        enquiry enq = new enquiry();
+      //  enquiry enq = new enquiry();
         List<enquiry> list = enqrepo.findConfirmed();
 
         model.addObject("list", list);
