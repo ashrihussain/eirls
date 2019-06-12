@@ -88,7 +88,7 @@ public class returnProductsController{
 
                       
 
-                        return "index";
+                        return "success";
 
                     }
 

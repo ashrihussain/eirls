@@ -73,6 +73,17 @@ public class placeOrderController {
         return "index";
     }
 
+    @RequestMapping("/successpage")
+    public String success() {
+
+    
+
+
+
+
+        return "success";
+    }
+
 
 
 
@@ -286,7 +297,7 @@ if(i == 0){
           
        
 
-        return "index";
+        return "success";
     }
 
 

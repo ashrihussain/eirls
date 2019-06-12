@@ -55,7 +55,7 @@ public class registerClientController {
 
 
 
-        return "index";
+        return "success";
     }
 
    
@@ -158,7 +158,7 @@ public class registerClientController {
 
 
 
-        return "index";
+        return "success";
     }
 
 
