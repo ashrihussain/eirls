@@ -84,9 +84,7 @@ public class placeOrderController {
     public ModelAndView showForm(ModelAndView model) throws ParseException {
 
      
-        // DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        // LocalDate localDate = LocalDate.now();
-
+       
    
 
 
@@ -98,29 +96,7 @@ public class placeOrderController {
         List<orderitems> list = ordrepo.pendings();
 
 
-        
-
-        for (enquiry e : plist) {
-
-            Date date1 = e.getDate_placed();
-          
-
-
-            long diff = now.getTime() - date1.getTime();
-
-            long diffDays = diff / (24 * 60 * 60 * 1000);
-            long diffHours = diff / (60 * 60 * 1000) % 24;
-            long diffMinutes = diff / (60 * 1000);
-
-            System.out.println(diffMinutes);
-
-            System.out.println(diffHours);
-
-            System.out.println(diffDays);
-
-            
-
-        }
+       
 
         model.addObject("list", list);
         model.setViewName("placeOrder");
@@ -241,12 +217,12 @@ public class placeOrderController {
 
 
     @RequestMapping(value = "/selectOrder", method = RequestMethod.GET)
-    public ModelAndView historyForm() {
+    public ModelAndView selectOrder() {
         return new ModelAndView("selectOrderItem", "deliverymodel", new deliveryModel());
     }
 
     @RequestMapping(value = "/showOrderItems", method = RequestMethod.POST)
-    public ModelAndView showHistory(@Valid @ModelAttribute("deliverymodel")deliveryModel deliverymodel, 
+    public ModelAndView showOrderItems(@Valid @ModelAttribute("deliverymodel")deliveryModel deliverymodel, 
       BindingResult result, ModelMap models, ModelAndView model) {
       
         int results = Integer.parseInt(deliverymodel.getIdentity());
@@ -326,24 +302,7 @@ if(i == 0){
         return model;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/materialEnquiry", method = RequestMethod.GET)
-    public List<enquiry> materialEnq(){
-
-        List<enquiry> list = enqrepo.findPending();
-            
-        return list;
-    }
-
-    
-    @ResponseBody
-    @RequestMapping(value = "/materialOrder", method = RequestMethod.GET)
-    public List<enquiry> materialOrd(){
-
-        List<enquiry> list = enqrepo.findConfirmed();
-            
-        return list;
-    }
+ 
 
 
     @ModelAttribute("confirmedOrderList")

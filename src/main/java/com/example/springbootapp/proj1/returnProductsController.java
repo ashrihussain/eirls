@@ -40,7 +40,7 @@ public class returnProductsController{
 
     @RequestMapping(value = "/returnItems", method = RequestMethod.GET)
     public ModelAndView showForm() {
-        return new ModelAndView("returnItemsOne", "enquiryplace", new enquiryPlace());
+        return new ModelAndView("returnItemsPage", "enquiryplace", new enquiryPlace());
 
 
     }
@@ -179,23 +179,7 @@ private Date getDate() {
 
 
   
-  @ResponseBody
-  @RequestMapping(value = "/productionOrders", method = RequestMethod.GET)
-  public List<enquiry> productionOrders(){
-
-      List<enquiry> list = enqrepo.findAll();
-          
-      return list;
-  }
-
-  @ResponseBody
-  @RequestMapping(value = "/deliveryNotes", method = RequestMethod.GET)
-  public List<delivery> deliveryNotes(){
-
-      List<delivery> list = delrepo.findAll();
-          
-      return list;
-  }
+  
 
   
 }

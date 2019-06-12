@@ -79,7 +79,7 @@ button:hover{
                      </td>
                 </tr>
                 <tr>
-               <td><form:label path = "courier">Select Order ID</form:label></td>
+               <td><form:label path = "courier">Select Courier ID</form:label></td>
                <td>
                   <form:select path = "courier">
                      <form:option value = "0" label = "Select"/>
