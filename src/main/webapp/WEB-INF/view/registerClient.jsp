@@ -8,9 +8,8 @@
 </head>
 <style>
 .layout {
-    height:800px;
-    width:1000px;
- 
+    margin-left: 500px;
+    margin-top: 50px;   
     position:absolute;
     background-color:white;
 }
@@ -50,6 +49,31 @@ button:hover{
   
 }
 
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100%;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: white;
+  color: purple;
+  transition: 0.2s;
+  
+}
 </style>
 <body>
 

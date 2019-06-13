@@ -99,6 +99,15 @@ public class serviceController{
   }
 
 
+  @ResponseBody
+  @RequestMapping(value = "/cancelledProducts", method = RequestMethod.GET)
+  public List<orderitems> cancelledOrderItems(){
+
+      List<orderitems> list =  ordrepo.cancelledOrders();
+          
+      return list;
+  }
+
 
 
 

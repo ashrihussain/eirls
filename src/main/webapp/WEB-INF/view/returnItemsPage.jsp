@@ -8,33 +8,59 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <style>
-.layout {
-    
-    width:1000px;
-    left:40%;
-    top:35%;
+.layout { 
+    width:1000px; 
     position:absolute;
     background-color:white;
 }
-
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100%;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: white;
+  color: purple;
+  transition: 0.2s;
+  
+}
 
 .main{
   
     font-family: "Arial";
    font-size: 15px;
-    position: relative;
-   
-}
+    position: relative; 
+    border-radius: 10px;
+
+ }
 
 body {
-    
- 
- 
+     
 background-color:white;
- 
-    
+  
+}
+.layout {
+    margin-left: 500px;
+    margin-top: 100px;
 }
 
+tr {
+border-bottom: 1px solid
+}
 
 button:hover{
      background-color:plum;
@@ -43,14 +69,34 @@ button:hover{
    
 }
 
-.main input{
-    height:30px;
-        width:100px;
-        border:3px solid purple;
-        border-radius:3px;
-        color:black;
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100px;
+  height: 40px;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: white;
+  color: purple;
+  border: purple;
+  transition: 0.8s;
+  opacity: 1
   
 }
+ 
 
 </style>
 

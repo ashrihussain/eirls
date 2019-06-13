@@ -8,18 +8,20 @@
     <style>
 
 .dropbtn {
-    background-color: gray;
-    color: white;
+    background-color: white;
+    color: purple;
     padding: 16px;
     font-size: 16px;
+    border: 1px;
     border: none;
     cursor: pointer;
+    max-width: 200px;
        
 }
 
 .dropbtn:hover{
-        background-color: white;
-     color:purple;
+        background-color: purple;
+     color:white;
      transition:0.5s;
 }
 
@@ -60,18 +62,42 @@
 }
 
 .NavBar{
-    border:3px solid black;
-        border-radius:1px;
-    background-color:gray;
+         border-radius:1px;
+    background-color:white;
+    color: purple;
 }
 .space{ 
-    width:900px;
+    width:1300px;
     display:inline-block;
+ 
+}
 
-
-
-
-
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100px;
+  height: 40px;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: white;
+  color: purple;
+  border: purple;
+  transition: 0.8s;
+  opacity: 1
+  
 }
     </style>
     
@@ -105,14 +131,14 @@
     
  <div class="space"></div>
   <div class="dropdown">
-  <button class="dropbtn">Client Settings</button>
+  <button class="dropbtn">Client Settings    </button>
   <div class="dropdown-content">
     <a href="/registerClient">Register Client</a>
     <a href="/manageAccount">Manage Clients</a>
      <a href="/clientHistory">View Client History</a>
     </div>
     </div>
-         
+         <hr />
           
      
       </div>

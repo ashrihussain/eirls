@@ -7,11 +7,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <style>
-.layout {
-    height:800px;
-    width:1000px;
- 
+.layout { 
+  box-shadow: 10px 10px 8px grey; 
     position:absolute;
+    padding: 30px;
     background-color:white;
 }
 
@@ -50,6 +49,60 @@ button:hover{
   
 }
 
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100px;
+  height: 40px;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: white;
+  color: purple;
+  border: purple;
+  transition: 0.8s;
+  opacity: 1
+  
+}
+.layout {
+    margin-left: 650px;
+    margin-top: 100px;
+}
+button { 
+  width: 100px;
+  height: 40px;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.abutton {
+    color:white;
+}
+
+.abutton:hover {
+  background-color: white;
+  color: purple;
+  border: purple;
+  transition: 0.8s;
+  opacity: 1
+  
+}
 </style>
 <body>
   <jsp:include page="navbar.jsp"/>
@@ -72,13 +125,13 @@ button:hover{
                     <td><form:input path="quantity"/></td>
                 </tr>
                 
-                <tr>
+                <tr  >  
                     <td><input type="submit" value="Submit"/></td>
                 </tr>
             </table>
         </form:form>
 
-        <button> <a href="/enquiry">Continue</a> </button>
+        <button class="abutton"> <a href="/enquiry">Continue</a> </button>
         </div>
         </div>
 </body>

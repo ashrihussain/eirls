@@ -63,8 +63,9 @@ button:hover{
 .flow {
     min-height: 700px;
     width:1000px;
-  left:15%;
-    position:absolute;
+  left:15%; 
+  margin-left: 650px;
+  margin-top: 50px;
     background-color:white;
 }
 

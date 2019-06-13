@@ -304,6 +304,51 @@ if(i == 0){
     @RequestMapping(value = "/showDelivery", method = RequestMethod.GET)
     public ModelAndView showDelivery(ModelAndView model) throws ParseException {
 
+
+    String theUrl = "http://wharehousenaveen.herokuapp.com/showItemsDelivered";
+   
+    RestTemplate restTemplate = new RestTemplate();
+
+    try {
+
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+      
+
+      HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+
+      ResponseEntity<deliveryWarehouse[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity,
+      deliveryWarehouse[].class);
+
+      List<delivery> dlist = delrepo.findAll();
+
+      deliveryWarehouse[] resp = respEntity.getBody();
+
+
+     for (deliveryWarehouse var : resp) {
+
+
+        for (delivery dels : dlist) {
+
+            if(var.getDelivery_id() ==  dels.getDelivery_id()){
+
+                delrepo.updateDeliveryStatus(var.getDelivery_status(), dels.getDelivery_id());
+
+            }
+            
+        }
+
+         
+     }
+
+    
+
+    } catch (Exception eek) {
+      System.out.println("** Exception: " + eek.getMessage());
+    }
+
+
+
       
         List<delivery> list = delrepo.findAll();
 
