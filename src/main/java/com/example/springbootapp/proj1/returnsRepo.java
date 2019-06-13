@@ -16,6 +16,6 @@ public interface returnsRepo extends CrudRepository<returns, String>{
      @Query("SELECT o FROM returns o WHERE o.return_type = 'Refund'")
      List<returns> findrefunds();
 
-     @Query("SELECT o.product_name o.product_quantity o.description o.return_location o.orderid.order_id o.return_date FROM returns o WHERE o.return_type = 'Exchange'")
+     @Query("SELECT o.product_name, o.product_quantity, o.description, o.return_location, o.orderid.order_id, o.return_date FROM returns o WHERE o.return_type = 'Exchange'")
      List<returns> findexchanges();
 }
