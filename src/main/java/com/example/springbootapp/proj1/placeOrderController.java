@@ -267,8 +267,9 @@ public class placeOrderController {
 
         delivery d = new delivery();
         enquiry eq = enqrepo.getEnquiry(Integer.parseInt(deliverymodel.getIdentity()));
-      
 
+      
+     //   updateStatus(eq);
 
         d.setDelivery_date(deliverymodel.getDuedate());
         d.setDelivery_location(deliverymodel.getAddress());
@@ -441,5 +442,29 @@ if(i == 0){
     
         return newDate;
       }
+
+
+      private void updateStatus(enquiry enq) {
+
+        String URL = "https://eirls-mm.herokuapp.com/api/sales-orders";
+        String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
+        RestTemplate template = new RestTemplate();
+        Map payload = new HashMap<Integer, String>();
+
+        payload.put("id", enq.getOrder_id());
+        payload.put("status", "confirmed");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + token);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Map> requestEntity = new HttpEntity<>(payload, headers);
+        ResponseEntity<Object> result = template.exchange(URL, HttpMethod.PUT, requestEntity, Object.class);
+
+        if (!result.getStatusCode().is2xxSuccessful()) {
+//            return null;
+        }
+    }
+
 
 }
