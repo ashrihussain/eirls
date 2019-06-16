@@ -9,10 +9,10 @@
 </head>
 <style>
 .layout {
-    height:800px;
-    width:1000px;
- 
+ .layout { 
+  box-shadow: 10px 10px 8px grey; 
     position:absolute;
+    padding: 30px;
     background-color:white;
 }
 
@@ -29,7 +29,7 @@ button{
     margin-top:10px; 
    background-color: plum;
   color: white;
-  padding: 10px 10px;
+  padding: 14px 25px;
   text-align: center; 
   text-decoration: none;
   display: inline-block;
@@ -71,6 +71,33 @@ input[type=submit] {
   cursor: pointer;
 }
 input[type=submit]:hover {
+  background-color: white;
+  color: purple;
+  border: purple;
+  transition: 0.8s;
+  opacity: 1
+  
+}
+.layout {
+    margin-left: 650px;
+    margin-top: 100px;
+}
+button { 
+  width: 100px;
+  height: 40px;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.abutton {
+    color:white;
+}
+
+.abutton:hover {
   background-color: white;
   color: purple;
   border: purple;

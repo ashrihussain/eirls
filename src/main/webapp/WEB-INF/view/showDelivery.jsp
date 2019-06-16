@@ -61,8 +61,9 @@ button:hover{
 }
 
 .flow {
-     margin-left: 550px;
-    margin-top: 50px;
+    min-height: 700px;
+    width:1000px;
+  left:15%;
     position:absolute;
     background-color:white;
 }
@@ -95,10 +96,20 @@ th {
 
 .bordermain{
     left:30px;
-     
+    
+    
     
 }
 
+th {
+  background-color: purple;
+  color: white;
+}
+
+table {
+    margin-top: 50px;
+}
+
 
 input[type=text], select {
   width: 100%;
@@ -127,36 +138,6 @@ input[type=submit]:hover {
   opacity: 1
   
 }
-
-
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-input[type=submit] {
-  width: 100px;
-  height: 40px;
-  background-color: purple;
-  color: white;
-  padding: 14px 20px; 
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-input[type=submit]:hover {
-  background-color: white;
-  color: purple;
-  border: purple;
-  transition: 0.8s;
-  opacity: 1
-  
-}
-
 
 
 </style>

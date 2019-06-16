@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletRequest;
+
 import javax.validation.Valid;
 
 import org.hibernate.annotations.SourceType;
@@ -182,10 +182,59 @@ public class placeOrderController {
     }
 
 
+    public void orderCompletion(){
+
+        String theUrl = "https://eirlss-production.herokuapp.com/public/orders";
+    
+    RestTemplate restTemplate = new RestTemplate();
+
+    try {
+
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+     
+
+      HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+
+      ResponseEntity<orderCompletion[]> respEntity = restTemplate.exchange(theUrl, HttpMethod.GET, entity,
+      orderCompletion[].class);
+      List<enquiry> enqlist = enqrepo.findAll();
+
+      orderCompletion[] resp = respEntity.getBody();
+
+      for (orderCompletion var : resp) {
+
+        for (enquiry eq : enqlist) {
+
+            if(var.getOrder_ref_id() == eq.getOrder_id()){
+
+                enqrepo.updateDate(var.getDue_date(), eq.getOrder_id());
+
+            }
+            
+        }
+
+
+        
+        }
+
+      
+
+    } catch (Exception eek) {
+      System.out.println("** Exception: " + eek.getMessage());
+    }
+
+    }
+
+
+
+
     @RequestMapping(value = "/showOrder", method = RequestMethod.GET)
     public ModelAndView showForm2(ModelAndView model) throws ParseException {
 
-      //  enquiry enq = new enquiry();
+        orderCompletion();
+
+
         List<enquiry> list = enqrepo.findConfirmed();
 
         model.addObject("list", list);
@@ -251,7 +300,7 @@ public class placeOrderController {
         delivery d = new delivery();
         enquiry eq = enqrepo.getEnquiry(Integer.parseInt(deliverymodel.getIdentity()));
        
-        updateStatus(eq);
+        
         d.setDelivery_date(deliverymodel.getDuedate());
         d.setDelivery_location(deliverymodel.getAddress());
         d.setDelivery_type(deliverymodel.getDeliverytype());
@@ -265,9 +314,11 @@ public class placeOrderController {
         d.setDel(cr);
         }
 
+        updateStatus(eq);
         d.setDelivery_status("pending");
         delrepo.save(d);
         enqrepo.updateItem("confirmed", Integer.parseInt(deliverymodel.getIdentity()));
+       
        
 
         return "success";
@@ -400,15 +451,15 @@ public class placeOrderController {
         return newDate;
       }
 
-
       private void updateStatus(enquiry enq) {
 
         String URL = "https://eirls-mm.herokuapp.com/api/sales-orders";
         String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJleHRlcm5hbCIsImlhdCI6MTU1NTMyNjk2OSwiZXhwIjoxNTU1NDEzMzY5fQ.kDnlreG8p_VcoLh3FVrZI3a8go4IXQCWHBMIGJxNOaMeKsrhPz-Axv3RWiXgsxbQNXmXc4HTx7IQ9622Z20RZw";
+        
         RestTemplate template = new RestTemplate();
-        Map payload = new HashMap<Integer, String>();
+        Map payload = new HashMap<String, String>();
 
-        payload.put("id", enq.getOrder_id());
+        payload.put("id", String.valueOf(enq.getOrder_id()));
         payload.put("status", "confirmed");
 
         HttpHeaders headers = new HttpHeaders();
@@ -422,6 +473,5 @@ public class placeOrderController {
            
         }
     }
-
 
 }

@@ -101,6 +101,14 @@ th {
     
 }
 
+th {
+  background-color: purple;
+  color: white;
+}
+
+table {
+    margin-top: 50px;
+}
 
 
 input[type=text], select {
@@ -130,7 +138,6 @@ input[type=submit]:hover {
   opacity: 1
   
 }
-
 
 
 

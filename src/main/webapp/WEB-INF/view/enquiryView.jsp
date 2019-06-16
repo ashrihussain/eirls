@@ -8,11 +8,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <style>
-.layout {
-    height:800px;
-    width:1000px;
- 
+.layout { 
+  box-shadow: 10px 10px 8px grey; 
     position:absolute;
+    padding: 30px;
     background-color:white;
 }
 
@@ -71,6 +70,33 @@ input[type=submit] {
   cursor: pointer;
 }
 input[type=submit]:hover {
+  background-color: white;
+  color: purple;
+  border: purple;
+  transition: 0.8s;
+  opacity: 1
+  
+}
+.layout {
+    margin-left: 650px;
+    margin-top: 100px;
+}
+button { 
+  width: 100px;
+  height: 40px;
+  background-color: purple;
+  color: white;
+  padding: 14px 20px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.abutton {
+    color:white;
+}
+
+.abutton:hover {
   background-color: white;
   color: purple;
   border: purple;

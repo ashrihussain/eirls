@@ -45,5 +45,11 @@ public interface enquiryRepo extends CrudRepository<enquiry, String> {
      void deleteItem(@Param("orderid") int orderid);
 
 
+     @Transactional
+     @Modifying(clearAutomatically = true)
+     @Query("update enquiry e set e.due_date=:#{#newVal} where e.order_id=:#{#orderid}")
+     void updateDate(@Param("newVal") String newVal, @Param("orderid") int orderid);
+
+
     // update item price where itemname = black shirt
 }

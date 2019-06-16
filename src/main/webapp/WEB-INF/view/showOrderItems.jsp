@@ -101,6 +101,16 @@ th {
     
 }
 
+th {
+  background-color: purple;
+  color: white;
+}
+
+table {
+    margin-top: 50px;
+}
+
+
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -128,7 +138,6 @@ input[type=submit]:hover {
   opacity: 1
   
 }
-
 </style>
 <body>
   <jsp:include page="navbar.jsp"/>
