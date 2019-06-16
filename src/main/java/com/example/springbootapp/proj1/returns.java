@@ -107,7 +107,6 @@ public class returns{
 	}
 
 	@Column(name = "return_date")
-	@JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss", timezone = "Asia/Colombo")
     private Date return_date;
 
 	public Date getReturn_date() {
