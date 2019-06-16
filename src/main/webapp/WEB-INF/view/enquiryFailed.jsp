@@ -126,7 +126,7 @@ button {
                 </tr>
                 
                 <tr>
-                    <td><input type="submit" value="Add Product"/></td>
+                    <td><input type="submit" value="Add"/></td>
                 </tr>
             </table>
         </form:form>

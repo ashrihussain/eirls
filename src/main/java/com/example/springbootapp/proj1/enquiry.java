@@ -80,6 +80,7 @@ private String order_status;
 
 
 	@Column(name = "date_placed")
+	@JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss", timezone = "Asia/Colombo")
 	private Date date_placed;
 
 	public Date getDate_placed() {
