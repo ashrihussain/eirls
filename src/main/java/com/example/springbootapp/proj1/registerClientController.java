@@ -154,11 +154,6 @@ public class registerClientController {
 
 
 
-
-
-
-
-
         return "success";
     }
 
@@ -181,10 +176,6 @@ public class registerClientController {
 
         return model;
       
-
-          
-       
-
        
     }
 

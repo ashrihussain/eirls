@@ -38,12 +38,7 @@ public class returnProductsController{
     @Autowired
     deliveryRepo delrepo;
 
-    @RequestMapping(value = "/returnItems", method = RequestMethod.GET)
-    public ModelAndView showForm() {
-        return new ModelAndView("returnItemsPage", "enquiryplace", new enquiryPlace());
-
-
-    }
+    
 
 
     @RequestMapping(value = "/returnItemsError", method = RequestMethod.GET)
@@ -53,9 +48,15 @@ public class returnProductsController{
 
     }
 
+    @RequestMapping(value = "/returnItems", method = RequestMethod.GET)
+    public ModelAndView showForm() {
+        return new ModelAndView("returnItemsPage", "enquiryplace", new enquiryPlace());
+
+
+    }
+
 
     
-
         @RequestMapping(value = "/returns", method = RequestMethod.POST)
         public String submitdetails(@Valid @ModelAttribute("enquiryplace") enquiryPlace enquiryplace, 
           BindingResult result, ModelMap model) {
@@ -64,13 +65,11 @@ public class returnProductsController{
                 return "error";
             }   
 
-            Date now = getDate();
-
+           Date now = getDate();
            int orderid = Integer.parseInt(enquiryplace.getIdentity());
-
            List<orderitems> orditemsList = ordrep.getItems(orderid);
            enquiry e = enqrepo.getEnquiry(orderid);
-          returns rtn = new returns();
+           returns rtn = new returns();
 
            for (orderitems var : orditemsList) {
                if(var.getProduct_name().equals(enquiryplace.getProductname())){
@@ -86,20 +85,12 @@ public class returnProductsController{
 
                         rerepo.save(rtn);
 
-                      
-
                         return "success";
 
                     }
 
                }
            }
-
-
-            
-           
- 
-       
 
            return "redirect:/returnItemsError";
     }

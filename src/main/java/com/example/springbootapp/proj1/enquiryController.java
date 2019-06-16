@@ -42,10 +42,10 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class enquiryController {
 
-  // List<Integer> quantityArray = new ArrayList<>();
+
   List<Integer> itemArrray = new ArrayList<>();
 
-  // int i = itemArrray.size();
+ 
 
   int saved_id;
 
@@ -74,17 +74,10 @@ public class enquiryController {
       return "error";
     }
 
-
     String s = "pending";
     Date now = getDate();
-   
-
     clients c = userrepo.getclient(Integer.parseInt(clientmodel.getId()));
-
-    // String name = enqrepo.findCustomer(c);
-
     enquiry enq = new enquiry();
-
     enq.setCid(c);
     enq.setDate_placed(now);
     enq.setClient_name(c.getClient_name());
@@ -93,8 +86,6 @@ public class enquiryController {
 
     enq.setOrder_status(s);
 
-    // enqrepo.updateOrder(s, now, enquiryplace.getClientname(),
-    // enquiryplace.getDate(), saved_id);
     enquiry e = enqrepo.save(enq);
 
     for (int var : itemArrray) {
@@ -114,11 +105,14 @@ public class enquiryController {
     return "redirect:/showEnquiry";
   }
 
+
+
   @RequestMapping(value = "/enquiryPlace", method = RequestMethod.GET)
   public ModelAndView productAdder() {
-
     return new ModelAndView("enquiryAdd", "enquiryplace", new enquiryPlace());
   }
+
+
 
   @RequestMapping(value = "/placeEnquiries", method = RequestMethod.POST)
   public String submitdetails(@Valid @ModelAttribute("enquiryplace") enquiryPlace enquiryplace, BindingResult result,
@@ -185,11 +179,9 @@ public class enquiryController {
       HttpHeaders headers = new HttpHeaders();
       headers.setContentType(MediaType.APPLICATION_JSON);
       headers.add("Authorization", "Bearer " + token2);
-
       HttpEntity<String> entities = new HttpEntity<String>("parameters", headers);
-
       ResponseEntity<MaterialDetails[]> respEntity2 = restTemplates.exchange(theUrl2, HttpMethod.GET, entities,
-          MaterialDetails[].class);
+     MaterialDetails[].class);
       List<orderitems> orderitemslist = ordrepo.pendings();
 
       MaterialDetails[] resp = respEntity2.getBody();
@@ -200,15 +192,12 @@ public class enquiryController {
           if (var.getQuantity() >= enquiryplace.getQuantity()) {
 
             orderitems ord = new orderitems();
-
             ord.setMaterial_order_id(var.getId());
             ord.setProduct_name(enquiryplace.getProductname());
             ord.setProduct_quantity(enquiryplace.getQuantity());
             ord.setProduct_status("Available");
             ord.setProduct_type("Finished Good");
-
             orderitems o = ordrepo.save(ord);
-
             itemArrray.add(o.getOrderitems_id());
 
             return "redirect:/enquiryPlace";
@@ -228,12 +217,6 @@ public class enquiryController {
             itemArrray.add(o.getOrderitems_id());
 
             return "redirect:/enquiryPlace";
-
-
-
-
-
-
           }
 
         }
@@ -243,15 +226,10 @@ public class enquiryController {
     } catch (Exception eek) {
       System.out.println("** Exception: " + eek.getMessage());
     }
-
     return "redirect:/enquiryPlaceFailed";
   }
 
-  // @RequestMapping(value="enq", method= RequestMethod.POST)
-  // public void placeEnq(User user){
-  // //user object will automatically be populated with values sent from browser
-  // or jsp page. Provide your authentication logic here
-  // }
+  
 
   @RequestMapping(value = "/enquiryPlaceFailed", method = RequestMethod.GET)
   public ModelAndView productAdderfailed() {
